@@ -320,7 +320,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-art" id="heroArt">
-      <video class="hero-video" autoplay muted loop playsinline poster="Pics/hero-poster.webp">
+      <video class="hero-video" muted loop playsinline preload="none" poster="Pics/hero-poster.webp">
         <source src="Pics/hero.mp4" type="video/mp4" />
       </video>
       <div class="hero-overlay"></div>
@@ -603,6 +603,13 @@
       var gv = document.querySelector('.gal-video');
       if (gv) { gv.setAttribute('autoplay', ''); gv.autoplay = true; var p2 = gv.play(); if (p2 && p2.catch) p2.catch(function () {}); }
     })();
+
+    // Start the hero video AFTER first paint so its bytes don't delay FCP/LCP on slow connections
+    window.addEventListener('load', function () {
+      var hv = document.querySelector('.hero-video');
+      if (!hv) return;
+      setTimeout(function () { try { hv.preload = 'auto'; var p = hv.play(); if (p && p.catch) p.catch(function(){}); } catch (e) {} }, 200);
+    });
 
     // Fade-in on scroll
     (function () {
