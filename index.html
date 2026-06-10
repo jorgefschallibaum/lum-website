@@ -323,10 +323,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-art" id="heroArt">
-      <img class="hero-img" src="Pics/hero-poster.webp" alt="" fetchpriority="high" decoding="async" />
-      <video class="hero-video" muted loop playsinline preload="none">
-        <source src="Pics/hero.mp4" type="video/mp4" />
-      </video>
+      <img class="hero-img" src="Pics/hero-poster.webp" alt="Palms and the sea on the hillside at LUM, Koh Tao" fetchpriority="high" decoding="async" />
       <div class="hero-overlay"></div>
       <div class="hero-copy">
         <div class="hero-lockup">
@@ -450,7 +447,7 @@
     <div class="sec-head"><span class="sec-num">06</span><span class="sec-kicker">Gallery</span></div>
     <h2>Photo &amp; film</h2>
     <div class="gal-grid">
-      <div class="cell wide"><video class="gal-video" muted loop playsinline preload="none" poster="Pics/hero-poster.webp"><source src="Pics/hero.mp4" type="video/mp4" /></video></div>
+      <div class="cell wide reveal"><img loading="lazy" decoding="async" src="Pics/hero-poster.webp" alt="Palms and the sea on Koh Tao" /></div>
       <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/sunset-a.webp" alt="Sunset over the sea, Koh Tao" /></div>
       <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/villa.webp" alt="Private pool at LUM" /></div>
       <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/activities.webp" alt="Snorkelling off Koh Tao" /></div>
@@ -601,21 +598,6 @@
       var past = window.scrollY > window.innerHeight - 80;
       document.getElementById('topbar').classList.toggle('solid', past);
       document.getElementById('bottombar').classList.toggle('show', past);
-    });
-
-    // Gallery video plays on larger screens only (keeps mobile to just the one hero clip)
-    (function () {
-      if (!window.matchMedia('(min-width: 820px)').matches) return;
-      var gv = document.querySelector('.gal-video');
-      if (gv) { gv.setAttribute('autoplay', ''); gv.autoplay = true; var p2 = gv.play(); if (p2 && p2.catch) p2.catch(function () {}); }
-    })();
-
-    // Start the hero video AFTER first paint; it fades in over the poster <img> (the LCP) once ready
-    window.addEventListener('load', function () {
-      var hv = document.querySelector('.hero-video');
-      if (!hv) return;
-      hv.addEventListener('playing', function () { hv.classList.add('ready'); });
-      setTimeout(function () { try { hv.preload = 'auto'; var p = hv.play(); if (p && p.catch) p.catch(function(){}); } catch (e) {} }, 200);
     });
 
     // Fade-in on scroll
