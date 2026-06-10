@@ -587,10 +587,10 @@
     function rvScroll(dir) {
       var t = document.getElementById('rvTrack'); if (!t) return;
       var c = t.querySelector('.rv'); var step = c ? c.getBoundingClientRect().width + 28 : 320;
-      var half = t.scrollWidth / 2;
-      var x = t.scrollLeft + dir * step;
+      var half = t._half || (t.scrollWidth / 2);
+      var x = (t._pos != null ? t._pos : t.scrollLeft) + dir * step;
       if (x < 0) x += half; if (x >= half) x -= half;
-      t.scrollLeft = x;
+      t._pos = x; t.scrollLeft = x;
     }
     window.addEventListener('scroll', function () {
       var past = window.scrollY > window.innerHeight - 80;
@@ -620,18 +620,21 @@
       var t = document.getElementById('rvTrack');
       if (!t) return;
       t.innerHTML += t.innerHTML; // duplicate cards for a seamless loop
-      var paused = false;
-      ['mouseenter','touchstart'].forEach(function(ev){ t.addEventListener(ev, function(){ paused = true; }, {passive:true}); });
-      ['mouseleave','touchend'].forEach(function(ev){ t.addEventListener(ev, function(){ paused = false; }, {passive:true}); });
-      var speed = 0.7, half = 0; // px per frame — gentle, readable glide
-      function measure() { half = t.scrollWidth / 2; }
+      var paused = false, speed = 0.7;
+      t._pos = 0; t._half = 0;
+      function measure() { t._half = t.scrollWidth / 2; }
       measure();
       window.addEventListener('resize', measure);
       window.addEventListener('load', measure);
+      t.addEventListener('mouseenter', function(){ paused = true; }, {passive:true});
+      t.addEventListener('mouseleave', function(){ paused = false; }, {passive:true});
+      t.addEventListener('touchstart', function(){ paused = true; }, {passive:true});
+      t.addEventListener('touchend', function(){ t._pos = t.scrollLeft; paused = false; }, {passive:true});
       function tick() {
-        if (!paused && half) {
-          t.scrollLeft += speed;
-          if (t.scrollLeft >= half) t.scrollLeft -= half;
+        if (!paused && t._half) {
+          t._pos += speed;
+          if (t._pos >= t._half) t._pos -= t._half;
+          t.scrollLeft = t._pos; // write only — no per-frame layout read
         }
         requestAnimationFrame(tick);
       }
