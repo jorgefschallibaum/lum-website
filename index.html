@@ -19,7 +19,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@300;400;500&family=Dancing+Script:wght@600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <!-- Load fonts at low priority (media=print swap) so the high-priority hero image wins bandwidth and paints first (LCP) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@300;400;500&family=Dancing+Script:wght@600&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@300;400;500&family=Dancing+Script:wght@600&display=swap" /></noscript>
 
   <style>
@@ -33,7 +34,8 @@
       --text:    #31311d;
       --dim:     #6f6a52;
       --cream:   #f4f2ed;
-      --accent:  #cf7146;   /* terracotta */
+      --accent:  #cf7146;   /* terracotta — decorative / large text only */
+      --accent-ink: #9e4a1c;/* darker terracotta — AA contrast for small text & links */
       --brown:   #744f3d;
       --line:    rgba(49,49,29,0.14);
       --linec:   rgba(244,242,237,0.26);
@@ -93,11 +95,11 @@
     .btn-fill:hover { background: #3f4b54; }
     .btn-line { border: 1px solid currentColor; color: inherit; }
     .btn-line:hover { background: rgba(49,49,29,0.06); }
-    .btn-wa { background: #6f9c82; color: #fff; border: 0; display: inline-flex; align-items: center; gap: 9px; }
-    .btn-wa:hover { background: #5f8a72; }
+    .btn-wa { background: #4e7a5f; color: #fff; border: 0; display: inline-flex; align-items: center; gap: 9px; }
+    .btn-wa:hover { background: #43694f; }
     .btn-wa svg { width: 16px; height: 16px; fill: currentColor; }
     .ov-group a .ic, .foot-col a .ic { width: 14px; height: 14px; margin-right: 7px; vertical-align: -2px; fill: currentColor; display: inline-block; }
-    .arrow { font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+    .arrow { font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-ink); }
     .arrow:hover { color: var(--text); }
     .cta-row { display: flex; flex-wrap: wrap; gap: 10px; }
 
@@ -118,7 +120,7 @@
 
     /* section frame */
     .sec-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 18px; }
-    .sec-num { font-family: var(--sans); font-weight: 500; font-size: 13px; color: var(--accent); }
+    .sec-num { font-family: var(--sans); font-weight: 500; font-size: 13px; color: var(--accent-ink); }
     .sec-kicker { font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
     h2 { font-size: clamp(34px,8vw,56px); line-height: 1.05; letter-spacing: -.01em; }
     p.body { font-family: var(--sans); font-weight: 300; font-size: 17px; max-width: 48ch; color: var(--dim); }
@@ -135,8 +137,8 @@
     .row { padding: 26px 0; border-bottom: 1px solid rgba(49,49,29,0.22); transition: background .35s ease; }
     .row:last-child { border-bottom: none; }
     .row:hover { background: rgba(207,113,60,0.06); }
-    .row .rn { display: block; font-family: var(--display); font-style: italic; font-size: 19px; color: var(--accent); line-height: 1; margin-bottom: 8px; }
-    .row h3 { font-size: clamp(25px,5.5vw,34px); line-height: 1.06; margin-bottom: 8px; }
+    .row .rn { display: block; font-family: var(--display); font-style: italic; font-size: 19px; color: var(--accent-ink); line-height: 1; margin-bottom: 8px; }
+    .row h2 { font-size: clamp(25px,5.5vw,34px); line-height: 1.06; margin-bottom: 8px; letter-spacing: 0; }
     .row p { font-family: var(--sans); font-weight: 300; font-size: 16px; color: var(--dim); max-width: 40ch; }
 
     /* image + text blocks */
@@ -157,7 +159,7 @@
     /* sunset — two photos */
     .sunset-sec { padding: 58px 22px 62px; background: var(--paper-warm); }
     .sunset-sec h2 { margin-bottom: 8px; }
-    .sunset-note { font-family: var(--display); font-style: italic; font-size: 17px; color: var(--accent); margin: 10px 0 22px; max-width: 46ch; }
+    .sunset-note { font-family: var(--display); font-style: italic; font-size: 17px; color: var(--accent-ink); margin: 10px 0 22px; max-width: 46ch; }
     .sunset-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 4px; }
     .sunset-grid > div { overflow: hidden; }
     .sunset-grid img { width: 100%; height: clamp(190px,30vh,260px); object-fit: cover; transition: transform 1.1s cubic-bezier(.2,.7,.2,1); }
@@ -189,7 +191,7 @@
     .faq summary::after { content: "+"; position: absolute; right: 2px; top: 50%; transform: translateY(-50%); font-family: var(--sans); font-weight: 300; font-size: 24px; color: var(--accent); }
     .faq details[open] summary::after { content: "\2013"; }
     .faq details p { padding: 0 0 20px; font-family: var(--sans); font-weight: 300; font-size: 16px; color: var(--dim); max-width: 60ch; }
-    .faq details p a { color: var(--accent); }
+    .faq details p a { color: var(--accent-ink); text-decoration: underline; }
 
     /* Reviews carousel */
     .reviews { padding: 72px 22px; background: var(--paper); text-align: center; }
@@ -198,7 +200,7 @@
     .rv-carousel { max-width: 1100px; margin: 0 auto; overflow: hidden; }
     .rv-track { display: flex; gap: 28px; padding: 4px 2px; will-change: transform; }
     .rv { flex: 0 0 100%; box-sizing: border-box; padding: 0 6px; }
-    .rv-stars { color: var(--accent); letter-spacing: 4px; font-size: 14px; margin-bottom: 14px; }
+    .rv-stars { color: var(--accent-ink); letter-spacing: 4px; font-size: 14px; margin-bottom: 14px; }
     .rv blockquote { font-family: var(--display); font-weight: 300; font-style: italic; font-size: 19px; line-height: 1.5; color: var(--text); max-width: 34ch; margin: 0 auto 14px; }
     .rv figcaption { font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
     .rv-nav { display: flex; justify-content: center; gap: 14px; margin-top: 32px; }
@@ -224,7 +226,7 @@
     footer .foot-social a { width: 38px; height: 38px; flex: 0 0 38px; border: 1px solid var(--linec); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--cream); line-height: 0; transition: background .2s ease; }
     footer .foot-social a:hover { background: rgba(244,242,237,.16); }
     .foot-social svg { width: 18px; height: 18px; display: block; }
-    .foot-col h4 { font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,242,237,.65); margin-bottom: 16px; }
+    .foot-col h3 { font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,242,237,.78); margin-bottom: 16px; }
     .foot-col a, .foot-col p, .foot-col span { font-family: var(--sans); font-weight: 300; font-size: 14px; color: rgba(244,242,237,.9); line-height: 2; display: block; }
     .foot-col a:hover { color: #fff; }
     .foot-col a.foot-book { display: inline-block; width: auto; text-align: center; margin: 8px 0 0; font-weight: 500; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; line-height: 1; border: 1px solid rgba(244,242,237,.55); border-radius: 40px; padding: 12px 24px; color: var(--cream); }
@@ -239,7 +241,7 @@
     .bottombar.show { transform: translateY(0); }
     .bottombar a { flex: 1; text-align: center; padding: 15px 8px; font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
     .bottombar .bb-primary { background: var(--grey-dp); color: var(--cream); }
-    .bottombar .bb-wa { background: #6f9c82; color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .bottombar .bb-wa { background: #4e7a5f; color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .bottombar .bb-wa svg { width: 15px; height: 15px; fill: currentColor; }
 
     @media (min-width: 820px) {
@@ -350,9 +352,9 @@
   <section class="why">
     <div class="sec-head"><span class="sec-kicker">Why LUM</span></div>
     <div class="rows">
-      <div class="row"><span class="rn">I</span><h3>Hillside Setting</h3><p>Set into the hillside for more privacy and a more secluded stay.</p></div>
-      <div class="row"><span class="rn">II</span><h3>Sunset-Facing</h3><p>Every villa opens toward the sea and the last light of the day.</p></div>
-      <div class="row"><span class="rn">III</span><h3>Private Pool &amp; Terrace</h3><p>A private pool and open terrace, with wide views and a more premium feel.</p></div>
+      <div class="row"><span class="rn">I</span><h2>Hillside Setting</h2><p>Set into the hillside for more privacy and a more secluded stay.</p></div>
+      <div class="row"><span class="rn">II</span><h2>Sunset-Facing</h2><p>Every villa opens toward the sea and the last light of the day.</p></div>
+      <div class="row"><span class="rn">III</span><h2>Private Pool &amp; Terrace</h2><p>A private pool and open terrace, with wide views and a more premium feel.</p></div>
     </div>
   </section>
 
@@ -492,7 +494,7 @@
       <a href="#" class="btn btn-wa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.93-.27-.1-.46-.15-.65.15-.2.3-.75.93-.92 1.12-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4s1.03 2.78 1.17 2.97c.15.2 2.03 3.1 4.92 4.35.69.3 1.22.48 1.64.61.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.26A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.96-.4-4.24-1.16l-.3-.18-2.85.75.76-2.78-.2-.31A8.2 8.2 0 1 1 12 20.2z"/></svg>Message us on WhatsApp</a>
       <a href="mailto:hello@livelum.com" class="btn btn-line">Email us</a>
     </div>
-    <p class="small">Direct booking · <a href="mailto:hello@livelum.com" style="color:var(--accent);">hello@livelum.com</a> · livelum.com</p>
+    <p class="small">Direct booking · <a href="mailto:hello@livelum.com" style="color:var(--accent-ink);text-decoration:underline;">hello@livelum.com</a> · livelum.com</p>
   </section>
 
   <!-- FAQ -->
@@ -546,7 +548,7 @@
       </div>
 
       <div class="foot-col">
-        <h4>Explore</h4>
+        <h3>Explore</h3>
         <a href="#villas">Villas</a>
         <a href="#experience">Experience</a>
         <a href="#activities">Activities</a>
@@ -556,7 +558,7 @@
       </div>
 
       <div class="foot-col">
-        <h4>Visit</h4>
+        <h3>Visit</h3>
         <span>Sai Nuan, Koh&nbsp;Tao</span>
         <span>Surat Thani, Thailand</span>
         <a href="#" target="_blank" rel="noopener">WhatsApp</a>
@@ -565,7 +567,7 @@
       </div>
 
       <div class="foot-col">
-        <h4>Stay</h4>
+        <h3>Stay</h3>
         <p style="max-width:30ch;">Booked directly with us — message us for dates and anything you'd like arranged.</p>
         <a href="#book" class="foot-book">Book your stay</a>
       </div>
@@ -618,7 +620,7 @@
       var paused = false, speed = 0.7;
       t._pos = 0; t._half = 0;
       function measure() { t._half = t.scrollWidth / 2; }
-      measure();
+      requestAnimationFrame(measure); // defer read to next frame — avoids a forced synchronous reflow at init
       window.addEventListener('resize', measure);
       window.addEventListener('load', measure);
       t.addEventListener('mouseenter', function(){ paused = true; }, {passive:true});
