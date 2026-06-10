@@ -101,7 +101,8 @@
     .ov-group a .ic, .foot-col a .ic { width: 14px; height: 14px; margin-right: 7px; vertical-align: -2px; fill: currentColor; display: inline-block; }
     .arrow { font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-ink); }
     .arrow:hover { color: var(--text); }
-    .cta-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .cta-or { font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); padding: 0 4px; }
 
     /* hero */
     .hero { min-height: 100svh; display: grid; grid-template-rows: 1fr auto; }
@@ -137,8 +138,8 @@
     .row { padding: 26px 0; border-bottom: 1px solid rgba(49,49,29,0.22); transition: background .35s ease; }
     .row:last-child { border-bottom: none; }
     .row:hover { background: rgba(207,113,60,0.06); }
-    .row .rn { display: block; font-family: var(--display); font-style: italic; font-size: 19px; color: var(--accent-ink); line-height: 1; margin-bottom: 8px; }
-    .row h2 { font-size: clamp(25px,5.5vw,34px); line-height: 1.06; margin-bottom: 8px; letter-spacing: 0; }
+    .row .rn { display: block; font-family: var(--display); font-style: italic; font-size: 22px; color: var(--accent-ink); line-height: 1; margin-bottom: 16px; letter-spacing: 0.02em; }
+    .row h2 { font-size: clamp(25px,5.5vw,34px); line-height: 1.06; margin-bottom: 12px; letter-spacing: 0; }
     .row p { font-family: var(--sans); font-weight: 300; font-size: 16px; color: var(--dim); max-width: 40ch; }
 
     /* image + text blocks */
@@ -492,6 +493,7 @@
     <p class="body">Tell us your dates and we'll arrange the rest — island hopping, private tours around the island, and anything you'd like ready when you walk in.</p>
     <div class="cta-row">
       <a href="#" class="btn btn-wa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.93-.27-.1-.46-.15-.65.15-.2.3-.75.93-.92 1.12-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4s1.03 2.78 1.17 2.97c.15.2 2.03 3.1 4.92 4.35.69.3 1.22.48 1.64.61.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.26A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.96-.4-4.24-1.16l-.3-.18-2.85.75.76-2.78-.2-.31A8.2 8.2 0 1 1 12 20.2z"/></svg>Message us on WhatsApp</a>
+      <span class="cta-or">or</span>
       <a href="mailto:hello@livelum.com" class="btn btn-line">Email us</a>
     </div>
     <p class="small">Direct booking · <a href="mailto:hello@livelum.com" style="color:var(--accent-ink);text-decoration:underline;">hello@livelum.com</a> · livelum.com</p>
