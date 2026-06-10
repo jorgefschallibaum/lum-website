@@ -211,7 +211,7 @@
     .gal-grid .cell:hover img { transform: scale(1.06); }
 
     /* footer — LOGO blue-grey, columned */
-    footer { padding: 60px 22px 32px; background: var(--grey); color: var(--cream); }
+    footer { padding: 60px 22px 96px; background: var(--grey); color: var(--cream); }
     .foot-cols { display: grid; grid-template-columns: 1fr; gap: 38px; }
     .foot-logo { width: 200px; max-width: 60vw; display: block; margin: -6px 0 16px -4px; }
     .foot-intro { font-family: var(--display); font-style: italic; font-weight: 300; font-size: 18px; line-height: 1.5; color: rgba(244,242,237,.92); max-width: 30ch; margin-bottom: 20px; }
@@ -248,6 +248,7 @@
       .foot-cols { grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 48px; }
       .ov-inner { grid-template-columns: 1.5fr 1fr; gap: 64px; align-items: center; }
       .book-btn { display: inline-block; }
+      footer { padding-bottom: 36px; }
       header { padding: 20px 56px; }
       .hero-art { padding: 100px 56px; }
       .block-text { padding-top: 62px; padding-bottom: 66px; }
@@ -315,6 +316,9 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-art" id="heroArt">
+      <video class="hero-video" autoplay muted loop playsinline poster="Pics/hero-poster.jpg">
+        <source src="Pics/hero.mp4" type="video/mp4" />
+      </video>
       <div class="hero-overlay"></div>
       <div class="hero-copy">
         <div class="hero-lockup">
@@ -589,19 +593,9 @@
       document.getElementById('bottombar').classList.toggle('show', past);
     });
 
-    // Video only on larger screens (mobile stays light & fast with a still image)
+    // Gallery video plays on larger screens only (keeps mobile to just the one hero clip)
     (function () {
       if (!window.matchMedia('(min-width: 820px)').matches) return;
-      var art = document.getElementById('heroArt');
-      if (art) {
-        var v = document.createElement('video');
-        v.className = 'hero-video'; v.muted = true; v.loop = true; v.autoplay = true;
-        v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('autoplay', '');
-        v.poster = 'Pics/hero-poster.jpg';
-        var s = document.createElement('source'); s.src = 'Pics/hero.mp4'; s.type = 'video/mp4';
-        v.appendChild(s); art.insertBefore(v, art.firstChild);
-        var p = v.play(); if (p && p.catch) p.catch(function () {});
-      }
       var gv = document.querySelector('.gal-video');
       if (gv) { gv.setAttribute('autoplay', ''); gv.autoplay = true; var p2 = gv.play(); if (p2 && p2.catch) p2.catch(function () {}); }
     })();
