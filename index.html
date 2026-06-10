@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LUM — Sunset Villas | Koh Tao, Thailand</title>
+  <meta name="description" content="LUM — private-pool villas set into a hillside above Sai Nuan, Koh Tao, facing the sunset over the sea. Booked directly." />
+
+  <!-- Social share preview (finalize image URL to absolute https://livelum.com/... when deployed) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="LUM — Sunset Villas | Koh Tao" />
+  <meta property="og:description" content="Private-pool villas on a hillside above Sai Nuan, Koh Tao — facing the sunset over the sea." />
+  <meta property="og:image" content="Pics/hero-poster.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200;0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --paper:   #f4f2ed;   /* base off-white */
+      --paper-lite: #fbfaf6;/* near-white (section under hero) */
+      --paper-warm: #ece7df;/* warm sand alt section */
+      --deep:    #31311d;   /* (legacy, unused for bottom now) */
+      --grey:    #879aa0;   /* LOGO blue-grey */
+      --grey-dp: #4f5d68;   /* deep blue-grey (readable cream text) */
+      --text:    #31311d;
+      --dim:     #6f6a52;
+      --cream:   #f4f2ed;
+      --accent:  #cf7146;   /* terracotta */
+      --brown:   #744f3d;
+      --line:    rgba(49,49,29,0.14);
+      --linec:   rgba(244,242,237,0.26);
+      --display: 'Newsreader', Georgia, serif;
+      --sans:    'Hanken Grotesk', -apple-system, Helvetica, Arial, sans-serif;
+      --script:  'Pinyon Script', cursive;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); font-weight: 300; color: var(--text); background: var(--paper); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .label { font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+    h1,h2,h3 { font-family: var(--display); font-weight: 300; }
+
+    /* reveal-on-scroll */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s ease, transform .9s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* header */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; color: #fff; transition: background .3s ease, color .3s ease; }
+    header.solid { background: rgba(251,250,246,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); color: var(--text); }
+    .hamb { background: none; border: 0; cursor: pointer; width: 26px; height: 16px; position: relative; padding: 0; color: inherit; }
+    .hamb span { position: absolute; left: 0; right: 0; height: 1.5px; background: currentColor; }
+    .hamb span:nth-child(1){ top:0; } .hamb span:nth-child(2){ top:50%; transform:translateY(-50%);} .hamb span:nth-child(3){ bottom:0; }
+    .brand-center { position: absolute; left: 50%; transform: translateX(-50%); text-align: center; line-height: 1; opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+    header.solid .brand-center { opacity: 1; pointer-events: auto; }
+    .brand-center .bc-name { font-family: var(--display); font-weight: 400; font-size: 24px; letter-spacing: 0.16em; display: block; }
+    .brand-center .bc-sub { font-family: var(--script); font-weight: 400; font-size: 19px; letter-spacing: 0.01em; display: block; margin-top: 1px; opacity: .95; white-space: nowrap; }
+    .book-btn { font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; background: #fbfaf6; color: #26261c; border: 0; border-radius: 40px; padding: 11px 22px; white-space: nowrap; transition: background .25s ease, color .25s ease; }
+    .book-btn:hover { background: #fff; }
+    header.solid .book-btn { background: var(--grey); color: #fff; }
+    header.solid .book-btn:hover { background: #768b92; }
+
+    /* overlay menu */
+    .overlay { position: fixed; inset: 0; z-index: 60; background: var(--grey); color: var(--cream); display: flex; align-items: center; justify-content: center; padding: 96px 28px 44px; opacity: 0; pointer-events: none; transition: opacity .4s ease; overflow-y: auto; }
+    .overlay.open { opacity: 1; pointer-events: auto; }
+    .overlay .close { position: absolute; top: 18px; right: 24px; background: none; border: 0; cursor: pointer; font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream); }
+    .ov-inner { width: 100%; max-width: 1080px; display: grid; grid-template-columns: 1fr; gap: 34px; }
+    .ov-nav { display: flex; flex-direction: column; gap: 2px; }
+    .ov-nav a { font-family: var(--display); font-weight: 300; font-size: clamp(26px,4.6vw,40px); line-height: 1.2; color: var(--cream); display: flex; align-items: baseline; gap: 12px; transition: opacity .2s ease; }
+    .ov-nav a:hover { opacity: .65; }
+    .ov-nav a .n { font-family: var(--sans); font-weight: 500; font-size: 11px; color: rgba(244,242,237,.55); letter-spacing: 0.1em; }
+    .ov-side { display: flex; flex-direction: column; gap: 26px; }
+    .ov-group h4 { font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,242,237,.6); margin-bottom: 10px; }
+    .ov-group a { font-family: var(--sans); font-weight: 300; font-size: 15px; color: rgba(244,242,237,.92); line-height: 1.95; display: block; }
+    .ov-group a:hover { color: #fff; }
+    .ov-social { display: flex; gap: 12px; margin-top: 2px; }
+    .ov-social a { width: 36px; height: 36px; border: 1px solid var(--linec); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--cream); transition: background .2s ease; }
+    .ov-social a:hover { background: rgba(244,242,237,.16); }
+    .ov-social svg { width: 17px; height: 17px; }
+
+    /* buttons */
+    .btn { font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding: 14px 24px; cursor: pointer; transition: .2s ease; display: inline-block; }
+    .btn-fill { background: var(--grey-dp); color: var(--cream); }
+    .btn-fill:hover { background: #3f4b54; }
+    .btn-line { border: 1px solid currentColor; color: inherit; }
+    .btn-line:hover { background: rgba(49,49,29,0.06); }
+    .btn-wa { background: #6f9c82; color: #fff; border: 0; display: inline-flex; align-items: center; gap: 9px; }
+    .btn-wa:hover { background: #5f8a72; }
+    .btn-wa svg { width: 16px; height: 16px; fill: currentColor; }
+    .ov-group a .ic, .foot-col a .ic { width: 14px; height: 14px; margin-right: 7px; vertical-align: -2px; fill: currentColor; display: inline-block; }
+    .arrow { font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+    .arrow:hover { color: var(--text); }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    /* hero */
+    .hero { min-height: 100svh; display: grid; grid-template-rows: 1fr auto; }
+    .hero-art { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; padding: 80px 22px; background: linear-gradient(180deg, rgba(40,35,25,.18), rgba(40,35,25,.5)), url('Pics/hero-poster.jpg'), linear-gradient(150deg,#e4854a,#b65a44 45%,#5d4a3a); background-size: cover; background-position: center; }
+    .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+    .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(40,35,25,.22), rgba(40,35,25,.5)); }
+    .hero-copy { position: relative; z-index: 2; color: var(--cream); width: 100%; display: flex; flex-direction: column; align-items: center; }
+    .hero-lockup { display: inline-flex; flex-direction: column; align-items: stretch; }
+    .hero-brand { font-family: var(--display); font-weight: 300; font-size: clamp(72px,25vw,220px); line-height: .74; letter-spacing: .03em; }
+    .hero-slogan { display: flex; align-items: center; gap: 14px; width: 100%; margin-top: .18em; }
+    .hero-slogan span:first-child { font-family: var(--sans); font-weight: 500; font-size: clamp(9px,2vw,13px); letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; color: var(--cream); }
+    .hero-slogan .hline { flex: 1 1 auto; height: 2px; background: rgba(244,242,237,.8); }
+    .hero-foot-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; padding: 16px 22px 18px; }
+
+    /* section frame */
+    .sec-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 18px; }
+    .sec-num { font-family: var(--sans); font-weight: 500; font-size: 13px; color: var(--accent); }
+    .sec-kicker { font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+    h2 { font-size: clamp(34px,8vw,56px); line-height: 1.05; letter-spacing: -.01em; }
+    p.body { font-family: var(--sans); font-weight: 300; font-size: 17px; max-width: 48ch; color: var(--dim); }
+    .body strong { color: var(--text); font-weight: 500; }
+
+    /* intro — near white */
+    .intro { padding: 60px 22px 56px; background: var(--paper-lite); }
+    .intro .big { font-family: var(--display); font-weight: 300; font-size: clamp(27px,6.4vw,46px); line-height: 1.18; max-width: 24ch; letter-spacing: -.01em; }
+    .intro .big em { font-style: italic; color: var(--accent); }
+
+    /* why */
+    .why { padding: 58px 22px 62px; background: var(--paper); }
+    .rows { display: grid; grid-template-columns: 1fr; border-top: 1px solid rgba(49,49,29,0.22); border-bottom: 1px solid rgba(49,49,29,0.22); margin-top: 8px; }
+    .row { padding: 26px 0; border-bottom: 1px solid rgba(49,49,29,0.22); transition: background .35s ease; }
+    .row:last-child { border-bottom: none; }
+    .row:hover { background: rgba(207,113,60,0.06); }
+    .row .rn { display: block; font-family: var(--display); font-style: italic; font-size: 19px; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+    .row h3 { font-size: clamp(25px,5.5vw,34px); line-height: 1.06; margin-bottom: 8px; }
+    .row p { font-family: var(--sans); font-weight: 300; font-size: 16px; color: var(--dim); max-width: 40ch; }
+
+    /* image + text blocks */
+    .block { padding: 0; }
+    .block-media { position: relative; overflow: hidden; }
+    .block-media img { width: 100%; height: clamp(230px,42vh,320px); object-fit: cover; transition: transform 1.1s cubic-bezier(.2,.7,.2,1); }
+    .block-media:hover img { transform: scale(1.06); }
+    .block-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px; color: var(--cream); background: linear-gradient(0deg, rgba(40,35,25,.66), rgba(40,35,25,0)); font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0; transform: translateY(12px); transition: opacity .55s ease, transform .55s ease; }
+    .block-media:hover .block-cap { opacity: 1; transform: none; }
+    .block-text { padding: 50px 22px 54px; }
+    .block-text h2 { margin-bottom: 16px; }
+    .block-text .body { margin-bottom: 22px; }
+    .feat { list-style: none; margin: 0 0 24px; padding: 0; max-width: 46ch; }
+    .feat li { font-family: var(--sans); font-weight: 300; font-size: 15px; color: var(--text); padding: 11px 0; border-top: 1px solid var(--line); display: flex; gap: 12px; }
+    .feat li::before { content: "—"; color: var(--accent); }
+    .feat.cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; }
+
+    /* sunset — two photos */
+    .sunset-sec { padding: 58px 22px 62px; background: var(--paper-warm); }
+    .sunset-sec h2 { margin-bottom: 8px; }
+    .sunset-note { font-family: var(--display); font-style: italic; font-size: 17px; color: var(--accent); margin: 10px 0 22px; max-width: 46ch; }
+    .sunset-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 4px; }
+    .sunset-grid > div { overflow: hidden; }
+    .sunset-grid img { width: 100%; height: clamp(190px,30vh,260px); object-fit: cover; transition: transform 1.1s cubic-bezier(.2,.7,.2,1); }
+    .sunset-grid > div:hover img { transform: scale(1.06); }
+
+    /* story — light */
+    .story { padding: 64px 22px; background: var(--paper); }
+    .story h2 { margin-bottom: 18px; max-width: 16ch; }
+    .story .body { margin-bottom: 14px; }
+
+    /* book */
+    .book { padding: 70px 22px; background: var(--paper-lite); }
+    .book h2 { margin-bottom: 18px; max-width: 14ch; }
+    .book .body { margin-bottom: 28px; }
+    .book .small { margin-top: 16px; font-size: 13px; color: var(--dim); }
+
+    /* FAQ */
+    .faq { padding: 64px 22px; background: var(--paper-warm); }
+    .faq h2 { margin-bottom: 24px; }
+    .faq-inner { display: grid; grid-template-columns: 1fr; gap: 26px; }
+    .faq-media { overflow: hidden; }
+    .faq-media img { width: 100%; height: clamp(220px,40vh,340px); object-fit: cover; transition: transform 1.1s cubic-bezier(.2,.7,.2,1); }
+    .faq-media:hover img { transform: scale(1.06); }
+    .faq-list { max-width: 760px; }
+    .faq details { border-top: 1px solid var(--line); }
+    .faq details:last-child { border-bottom: 1px solid var(--line); }
+    .faq summary { list-style: none; cursor: pointer; padding: 18px 38px 18px 0; position: relative; font-family: var(--display); font-weight: 300; font-size: clamp(20px,4.5vw,26px); color: var(--text); }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; position: absolute; right: 2px; top: 50%; transform: translateY(-50%); font-family: var(--sans); font-weight: 300; font-size: 24px; color: var(--accent); }
+    .faq details[open] summary::after { content: "\2013"; }
+    .faq details p { padding: 0 0 20px; font-family: var(--sans); font-weight: 300; font-size: 16px; color: var(--dim); max-width: 60ch; }
+    .faq details p a { color: var(--accent); }
+
+    /* Reviews carousel */
+    .reviews { padding: 72px 22px; background: var(--paper); text-align: center; }
+    .reviews .sec-kicker { display: block; margin-bottom: 14px; }
+    .rv-title { font-size: clamp(36px,8.5vw,60px); font-weight: 400; line-height: 1.04; margin-bottom: 36px; }
+    .rv-carousel { max-width: 1100px; margin: 0 auto; }
+    .rv-track { display: flex; gap: 28px; overflow-x: auto; padding: 4px 2px; scrollbar-width: none; -ms-overflow-style: none; }
+    .rv-track::-webkit-scrollbar { display: none; }
+    .rv { flex: 0 0 100%; box-sizing: border-box; padding: 0 6px; }
+    .rv-stars { color: var(--accent); letter-spacing: 4px; font-size: 14px; margin-bottom: 14px; }
+    .rv blockquote { font-family: var(--display); font-weight: 300; font-style: italic; font-size: 19px; line-height: 1.5; color: var(--text); max-width: 34ch; margin: 0 auto 14px; }
+    .rv figcaption { font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
+    .rv-nav { display: flex; justify-content: center; gap: 14px; margin-top: 32px; }
+    .rv-nav button { width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; background: none; cursor: pointer; color: var(--text); font-size: 16px; transition: background .2s ease; }
+    .rv-nav button:hover { background: rgba(49,49,29,.06); }
+
+    /* Gallery (photo + film) */
+    .gallery { padding: 64px 22px; background: var(--paper-lite); }
+    .gallery h2 { margin-bottom: 22px; }
+    .gal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .gal-grid .cell { overflow: hidden; }
+    .gal-grid .cell.wide { grid-column: span 2; }
+    .gal-grid img, .gal-grid video { width: 100%; height: clamp(120px,24vh,170px); object-fit: cover; display: block; transition: transform 1.1s cubic-bezier(.2,.7,.2,1); }
+    .gal-grid .cell.wide video { height: clamp(180px,30vh,240px); }
+    .gal-grid .cell:hover img { transform: scale(1.06); }
+
+    /* footer — LOGO blue-grey, columned */
+    footer { padding: 60px 22px 32px; background: var(--grey); color: var(--cream); }
+    .foot-cols { display: grid; grid-template-columns: 1fr; gap: 38px; }
+    .foot-logo { width: 200px; max-width: 60vw; display: block; margin: -6px 0 16px -4px; }
+    .foot-intro { font-family: var(--display); font-style: italic; font-weight: 300; font-size: 18px; line-height: 1.5; color: rgba(244,242,237,.92); max-width: 30ch; margin-bottom: 20px; }
+    .foot-social { display: flex; gap: 12px; }
+    footer .foot-social a { width: 38px; height: 38px; flex: 0 0 38px; border: 1px solid var(--linec); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--cream); line-height: 0; transition: background .2s ease; }
+    footer .foot-social a:hover { background: rgba(244,242,237,.16); }
+    .foot-social svg { width: 18px; height: 18px; display: block; }
+    .foot-col h4 { font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,242,237,.65); margin-bottom: 16px; }
+    .foot-col a, .foot-col p, .foot-col span { font-family: var(--sans); font-weight: 300; font-size: 14px; color: rgba(244,242,237,.9); line-height: 2; display: block; }
+    .foot-col a:hover { color: #fff; }
+    .foot-col a.foot-book { display: inline-block; width: auto; text-align: center; margin: 8px 0 0; font-weight: 500; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; line-height: 1; border: 1px solid rgba(244,242,237,.55); border-radius: 40px; padding: 12px 24px; color: var(--cream); }
+    .foot-col a.foot-book:hover { background: rgba(244,242,237,.14); }
+    .foot-spotify { margin-top: 14px !important; color: rgba(244,242,237,.8) !important; }
+    .foot-bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--linec); }
+    .foot-bar span, .foot-bar a { font-family: var(--sans); font-size: 12px; letter-spacing: 0.05em; color: rgba(244,242,237,.7); }
+    .foot-bar a:hover { color: #fff; }
+
+    /* sticky bottom bar (phones) */
+    .bottombar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 55; display: flex; transform: translateY(110%); transition: transform .3s ease; }
+    .bottombar.show { transform: translateY(0); }
+    .bottombar a { flex: 1; text-align: center; padding: 15px 8px; font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+    .bottombar .bb-primary { background: var(--grey-dp); color: var(--cream); }
+    .bottombar .bb-wa { background: #6f9c82; color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .bottombar .bb-wa svg { width: 15px; height: 15px; fill: currentColor; }
+
+    @media (min-width: 820px) {
+      .intro,.why,.story,.book,.faq,.reviews,footer,.block-text,.hero-foot-row,.sunset-sec { padding-left: 56px; padding-right: 56px; }
+      .rv { flex-basis: calc((100% - 56px) / 3); }
+      .gal-grid { grid-template-columns: repeat(3,1fr); }
+      .gal-grid .cell.wide { grid-column: span 2; }
+      .gal-grid img, .gal-grid video, .gal-grid .cell.wide video { height: 300px; }
+      .faq-inner { grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: stretch; }
+      .faq-media img { height: 100%; min-height: 460px; }
+      .foot-cols { grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 48px; }
+      .ov-inner { grid-template-columns: 1.5fr 1fr; gap: 64px; align-items: center; }
+      header { padding: 20px 56px; }
+      .hero-art { padding: 100px 56px; }
+      .block-text { padding-top: 62px; padding-bottom: 66px; }
+      .sunset-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .sunset-grid img { height: 58vh; max-height: 560px; }
+      .rows { grid-template-columns: repeat(3,1fr); }
+      .row { border-bottom: none; border-left: 1px solid rgba(49,49,29,0.22); padding: 36px 32px 42px; }
+      .row:first-child { border-left: none; padding-left: 0; }
+      .intro .big { max-width: 26ch; }
+      /* image + text side by side */
+      .block { display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
+      .block-media img { height: 560px; min-height: 0; }
+      .block--rev .block-media { order: 2; }
+      .bottombar { display: none; }
+    }
+  </style>
+</head>
+
+<body id="top">
+
+  <!-- HEADER -->
+  <header id="topbar">
+    <button class="hamb" onclick="openMenu()" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <a href="#top" class="brand-center"><span class="bc-name">LUM</span><span class="bc-sub">Tropical Sunset Villas</span></a>
+    <a href="#book" class="book-btn">Book now</a>
+  </header>
+
+  <!-- MENU -->
+  <div class="overlay" id="overlay">
+    <button class="close" onclick="closeMenu()">Close ✕</button>
+    <div class="ov-inner">
+      <nav class="ov-nav">
+        <a href="#villas" onclick="closeMenu()">Villas <span class="n">01</span></a>
+        <a href="#experience" onclick="closeMenu()">Experience <span class="n">02</span></a>
+        <a href="#activities" onclick="closeMenu()">Activities <span class="n">03</span></a>
+        <a href="#moment" onclick="closeMenu()">Sunset <span class="n">04</span></a>
+        <a href="#location" onclick="closeMenu()">Location <span class="n">05</span></a>
+        <a href="#gallery" onclick="closeMenu()">Gallery <span class="n">06</span></a>
+        <a href="#book" onclick="closeMenu()">Book <span class="n">07</span></a>
+        <a href="#faq" onclick="closeMenu()">FAQ <span class="n">08</span></a>
+      </nav>
+      <div class="ov-side">
+        <div class="ov-group">
+          <h4>Stay</h4>
+          <a href="#book" onclick="closeMenu()">Book now</a>
+          <a href="#" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="mailto:hello@livelum.com">hello@livelum.com</a>
+        </div>
+        <div class="ov-group">
+          <h4>More</h4>
+          <a href="#" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.6 14.4a.62.62 0 0 1-.86.21c-2.35-1.44-5.3-1.76-8.79-.96a.62.62 0 1 1-.28-1.21c3.82-.87 7.1-.5 9.72 1.1.3.18.39.57.21.86zm1.23-2.74a.78.78 0 0 1-1.07.26c-2.69-1.65-6.79-2.13-9.97-1.17a.78.78 0 1 1-.45-1.49c3.63-1.1 8.15-.56 11.23 1.33.37.22.49.7.26 1.07zm.11-2.85C14.84 8.93 9.4 8.74 6.3 9.68a.93.93 0 1 1-.54-1.78c3.56-1.08 9.56-.87 13.34 1.38a.93.93 0 1 1-.95 1.6z"/></svg>LUM Music on Spotify</a>
+          <a href="#" onclick="closeMenu()">Downloads — postcards &amp; info</a>
+        </div>
+        <div class="ov-social">
+          <a href="https://www.instagram.com/live.lum" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.tiktok.com/@live.lum" aria-label="TikTok" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.2 3c.3 2 1.7 3.5 3.8 3.8v2.8c-1.4 0-2.7-.4-3.8-1.1v5.9c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6c.34 0 .67.03 1 .08v3.02c-.32-.1-.65-.15-1-.15-1.7 0-3.1 1.4-3.1 3.05s1.4 3.05 3.1 3.05 3.1-1.36 3.1-3.05V3h2.9z"/></svg></a>
+          <a href="#" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8c0-.9.25-1.5 1.55-1.5H17V3.9c-.3-.04-1.3-.13-2.45-.13-2.42 0-4.05 1.48-4.05 4.2V10H8v3h2.5v8h3z"/></svg></a>
+          <a href="#" aria-label="Google Maps" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s7-6.4 7-12A7 7 0 0 0 5 10c0 5.6 7 12 7 12z"/><circle cx="12" cy="10" r="2.4"/></svg></a>
+          <a href="#" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.93-.27-.1-.46-.15-.65.15-.2.3-.75.93-.92 1.12-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4s1.03 2.78 1.17 2.97c.15.2 2.03 3.1 4.92 4.35.69.3 1.22.48 1.64.61.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.26A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.96-.4-4.24-1.16l-.3-.18-2.85.75.76-2.78-.2-.31A8.2 8.2 0 1 1 12 20.2z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-art" id="heroArt">
+      <div class="hero-overlay"></div>
+      <div class="hero-copy">
+        <div class="hero-lockup">
+          <h1 class="hero-brand">LUM</h1>
+          <div class="hero-slogan"><span>Tropical Sunset Villas</span><span class="hline"></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-foot-row">
+      <div style="flex:1 1 auto;min-width:130px;"><span class="label" style="font-size:13px;font-weight:500;letter-spacing:.12em;color:var(--text);">Sunset-facing villas · Koh&nbsp;Tao, Thailand</span></div>
+      <div class="cta-row">
+        <a href="#villas" class="btn btn-fill">Explore ↓</a>
+        <a href="#book" class="btn btn-wa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.93-.27-.1-.46-.15-.65.15-.2.3-.75.93-.92 1.12-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4s1.03 2.78 1.17 2.97c.15.2 2.03 3.1 4.92 4.35.69.3 1.22.48 1.64.61.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.26A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.96-.4-4.24-1.16l-.3-.18-2.85.75.76-2.78-.2-.31A8.2 8.2 0 1 1 12 20.2z"/></svg>Contact us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <p class="big reveal">Private hillside pool villas with <em>sunset</em> views over the water.</p>
+  </section>
+
+  <!-- WHY -->
+  <section class="why">
+    <div class="sec-head"><span class="sec-kicker">Why LUM</span></div>
+    <div class="rows">
+      <div class="row"><span class="rn">I</span><h3>Hillside Setting</h3><p>Set into the hillside for more privacy and a more secluded stay.</p></div>
+      <div class="row"><span class="rn">II</span><h3>Sunset-Facing</h3><p>Every villa opens toward the sea and the last light of the day.</p></div>
+      <div class="row"><span class="rn">III</span><h3>Private Pool &amp; Terrace</h3><p>A private pool and open terrace, with wide views and a more premium feel.</p></div>
+    </div>
+  </section>
+
+  <!-- VILLAS -->
+  <section class="block" id="villas">
+    <div class="block-media reveal"><img loading="lazy" decoding="async" src="Pics/villa.jpg" alt="A couple in a private pool at LUM, Koh Tao" /><span class="block-cap">Private pool &amp; terrace</span></div>
+    <div class="block-text">
+      <div class="sec-head"><span class="sec-num">01</span><span class="sec-kicker">The Villas</span></div>
+      <h2>Every villa, one uninterrupted view</h2>
+      <p class="body">Each villa follows the same layout — a calm bedroom opening onto a <strong>private terrace and pool</strong>, with the sunset and water beyond. Warm materials, soft lighting, and an air-conditioned interior designed for comfort.</p>
+      <ul class="feat">
+        <li>Private pool</li>
+        <li>Terrace facing the sunset</li>
+        <li>Air-conditioned interior</li>
+        <li>In-villa minibar — fine wine, sparkling &amp; mixers</li>
+        <li>Built into the hillside, fully private</li>
+      </ul>
+      <a href="#book" class="arrow">Explore the villas →</a>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="block block--rev" id="experience">
+    <div class="block-media reveal"><img loading="lazy" decoding="async" src="Pics/experience.jpg" alt="Hammocks at sunset on Koh Tao" /><span class="block-cap">Slow days on Koh Tao</span></div>
+    <div class="block-text">
+      <div class="sec-head"><span class="sec-num">02</span><span class="sec-kicker">The Experience</span></div>
+      <h2>Calm, private, and curated</h2>
+      <p class="body">This is the part you can't book anywhere else — the feeling of the place. Mornings without a schedule, afternoons in the shade, the sky changing colour as the day slows down. LUM is your <strong>private base to unwind</strong>, entirely your own.</p>
+      <ul class="feat">
+        <li>Pier pick-up &amp; drop-off</li>
+        <li>Breakfast basket to your villa</li>
+        <li>Sunset drinks set-up</li>
+        <li>In-villa massage on request</li>
+      </ul>
+      <a href="#activities" class="arrow">See activities →</a>
+      <p style="margin-top:16px;"><a href="#" class="arrow" target="_blank" rel="noopener">♪ The LUM Music Experience on Spotify →</a></p>
+    </div>
+  </section>
+
+  <!-- ACTIVITIES -->
+  <section class="block" id="activities">
+    <div class="block-media reveal"><img loading="lazy" decoding="async" src="Pics/activities.jpg" alt="Snorkelling in clear water off Koh Tao" /><span class="block-cap">Dive · snorkel · explore</span></div>
+    <div class="block-text">
+      <div class="sec-head"><span class="sec-num">03</span><span class="sec-kicker">Activities</span></div>
+      <h2>Things to do on Koh Tao</h2>
+      <p class="body">Beyond the villa, the island is yours. We can arrange dive trips and snorkelling, point you to the best hikes and beaches, and even get you tickets to Koh Tao's biggest parties and festivals.</p>
+      <ul class="feat cols2">
+        <li>Diving</li>
+        <li>Snorkelling</li>
+        <li>Hiking</li>
+        <li>SUP / paddleboarding</li>
+        <li>Football</li>
+        <li>Padel</li>
+        <li>Pétanque</li>
+        <li>Parties &amp; events</li>
+      </ul>
+      <a href="#book" class="arrow">Plan your days →</a>
+    </div>
+  </section>
+
+  <!-- SUNSET -->
+  <section class="sunset-sec" id="moment">
+    <div class="sec-head"><span class="sec-num">04</span><span class="sec-kicker">The Sunset</span></div>
+    <h2>Why we face west</h2>
+    <p class="body" style="margin-top:14px;">Open views over the water, with shifting light and colour every evening — the reason the whole place is pointed this way.</p>
+    <p class="sunset-note">The sun sets here between about 6:15 and 6:55, depending on the season. We'll have the drinks ready.</p>
+    <div class="sunset-grid">
+      <div class="reveal"><img loading="lazy" decoding="async" src="Pics/sunset-a.jpg" alt="Sunset over the sea, Koh Tao" /></div>
+      <div class="reveal"><img loading="lazy" decoding="async" src="Pics/sunset-drone.jpg" alt="Golden sunset over the water, Koh Tao" /></div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="block" id="location">
+    <div class="block-media reveal"><img loading="lazy" decoding="async" src="Pics/location.jpg" alt="Beach and turquoise water on Koh Tao near LUM" /><span class="block-cap">Sai Nuan · Koh Tao</span></div>
+    <div class="block-text">
+      <div class="sec-head"><span class="sec-num">05</span><span class="sec-kicker">The Location</span></div>
+      <h2>Koh Tao — Sai Nuan</h2>
+      <p class="body">Three minutes from the beach, near some of Koh Tao's best places to eat, and around ten minutes from the pier. <strong>Away from the crowds</strong> — close to everything.</p>
+      <ul class="feat">
+        <li>3 minutes to the beach</li>
+        <li>Near Koh Tao's best places to eat</li>
+        <li>~10 minutes to the pier</li>
+        <li>Pick-up &amp; drop-off arranged</li>
+      </ul>
+      <a href="#book" class="arrow">Check availability →</a>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="sec-head"><span class="sec-num">06</span><span class="sec-kicker">Gallery</span></div>
+    <h2>Photo &amp; film</h2>
+    <div class="gal-grid">
+      <div class="cell wide"><video class="gal-video" muted loop playsinline preload="none" poster="Pics/hero-poster.jpg"><source src="Pics/hero.mp4" type="video/mp4" /></video></div>
+      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/sunset-a.jpg" alt="Sunset over the sea, Koh Tao" /></div>
+      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/villa.jpg" alt="Private pool at LUM" /></div>
+      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/activities.jpg" alt="Snorkelling off Koh Tao" /></div>
+      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/experience.jpg" alt="Sunset hammocks on Koh Tao" /></div>
+      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/location.jpg" alt="Beach on Koh Tao" /></div>
+      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/sunset-b.jpg" alt="Longtail boats at sunset, Koh Tao" /></div>
+      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/gallery-nang.jpg" alt="Koh Nang Yuan, Koh Tao" /></div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews">
+    <span class="sec-kicker">Reviews</span>
+    <h2 class="rv-title">What our guests say</h2>
+    <div class="rv-carousel">
+      <div class="rv-track" id="rvTrack">
+        <figure class="rv"><div class="rv-stars">★★★★★</div><blockquote>“Five minutes from the parties when we wanted them, and completely private when we didn't. The best of both worlds.”</blockquote><figcaption>— Charles, United Kingdom</figcaption></figure>
+        <figure class="rv"><div class="rv-stars">★★★★★</div><blockquote>“Such a convenient location — the beach, the food, and the pier are all just minutes away.”</blockquote><figcaption>— Mehmet, Turkey</figcaption></figure>
+        <figure class="rv"><div class="rv-stars">★★★★★</div><blockquote>“A scooter was waiting for us right at the villa. They arranged absolutely everything before we even landed.”</blockquote><figcaption>— Daniel, USA</figcaption></figure>
+        <figure class="rv"><div class="rv-stars">★★★★★</div><blockquote>“They hooked us up with the best dive school and an unreal snorkelling trip. Every recommendation was spot on.”</blockquote><figcaption>— Lukas, Austria</figcaption></figure>
+        <figure class="rv"><div class="rv-stars">★★★★★</div><blockquote>“The dining suggestions were perfect, and they sorted all of our ferry and bus tickets too.”</blockquote><figcaption>— Hannah, Canada</figcaption></figure>
+        <figure class="rv"><div class="rv-stars">★★★★★</div><blockquote>“I came on my own for some me-time and felt completely looked after. The team's kindness made the trip.”</blockquote><figcaption>— Lena, Germany · solo traveller</figcaption></figure>
+        <figure class="rv"><div class="rv-stars">★★★★★</div><blockquote>“Don't hesitate to message the owners directly — they genuinely care, and you feel it from the first reply.”</blockquote><figcaption>— Mikael, Finland</figcaption></figure>
+        <figure class="rv"><div class="rv-stars">★★★★★</div><blockquote>“Staff were polite, attentive, and never intrusive. Faultless hospitality from start to finish.”</blockquote><figcaption>— Sofie, Denmark</figcaption></figure>
+        <figure class="rv"><div class="rv-stars">★★★★★</div><blockquote>“Came solo to switch off. The views are beyond compare — I honestly didn't want to leave.”</blockquote><figcaption>— James, Australia · solo traveller</figcaption></figure>
+        <figure class="rv"><div class="rv-stars">★★★★★</div><blockquote>“Our own pool, the sunset every evening, and everything arranged before we arrived. Perfect.”</blockquote><figcaption>— Thomas &amp; Maria, Netherlands</figcaption></figure>
+      </div>
+    </div>
+    <div class="rv-nav">
+      <button onclick="rvScroll(-1)" aria-label="Previous reviews">←</button>
+      <button onclick="rvScroll(1)" aria-label="Next reviews">→</button>
+    </div>
+  </section>
+
+  <!-- BOOK -->
+  <section class="book" id="book">
+    <div class="sec-head"><span class="sec-num">07</span><span class="sec-kicker">Reservations</span></div>
+    <h2>Book your stay</h2>
+    <p class="body">With more than 20 years on Koh&nbsp;Tao, we look after the whole journey — from the moment you land at Bangkok's Suvarnabhumi or Don&nbsp;Mueang, all the way to your villa. Flights, ferries, and transfers: handled.</p>
+    <p class="body">Tell us your dates and we'll arrange the rest — island hopping, private tours around the island, and anything you'd like ready when you walk in.</p>
+    <div class="cta-row">
+      <a href="#" class="btn btn-wa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.93-.27-.1-.46-.15-.65.15-.2.3-.75.93-.92 1.12-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4s1.03 2.78 1.17 2.97c.15.2 2.03 3.1 4.92 4.35.69.3 1.22.48 1.64.61.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.26A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.96-.4-4.24-1.16l-.3-.18-2.85.75.76-2.78-.2-.31A8.2 8.2 0 1 1 12 20.2z"/></svg>Message us on WhatsApp</a>
+      <a href="mailto:hello@livelum.com" class="btn btn-line">Email us</a>
+    </div>
+    <p class="small">Direct booking · <a href="mailto:hello@livelum.com" style="color:var(--accent);">hello@livelum.com</a> · livelum.com</p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="faq-inner">
+      <div class="faq-media reveal"><img loading="lazy" decoding="async" src="Pics/faq.jpg" alt="Palms on the hillside at LUM, Koh Tao" /></div>
+      <div class="faq-body">
+    <div class="sec-head"><span class="sec-num">08</span><span class="sec-kicker">FAQ</span></div>
+    <h2>Good to know</h2>
+    <div class="faq-list">
+      <details><summary>Where is LUM?</summary><p>LUM is on the Sai Nuan hillside on the west coast of Koh Tao, Thailand — about three minutes from the nearest beach and around ten minutes from the main pier, facing the sunset over the sea.</p></details>
+      <details><summary>How do I get there?</summary><p>We arrange pick-up and drop-off at the pier, so transfers are taken care of. Just send us your ferry details when you book.</p></details>
+      <details><summary>What's in each villa?</summary><p>Each villa has a private pool, an open terrace facing the sunset, and a calm air-conditioned bedroom with warm natural materials. They all share the same layout and the same uninterrupted view.</p></details>
+      <details><summary>Is LUM good for couples?</summary><p>Yes — LUM is designed for privacy. The villas are set into the hillside and spaced apart, which makes it well suited to couples, honeymoons, and anniversaries.</p></details>
+      <details><summary>Is there food and drink at the villas?</summary><p>Each villa has an in-villa minibar — fine wine, sparkling, refreshments and mixers. There's no kitchen, but we can arrange a breakfast basket to your villa, a sunset drinks set-up, and the best places to eat nearby.</p></details>
+      <details><summary>How do I book?</summary><p>LUM is booked directly with us. Message us on WhatsApp or email <a href="mailto:hello@livelum.com">hello@livelum.com</a> with your dates and we'll take care of the rest.</p></details>
+      <details><summary>Can you arrange activities and dining?</summary><p>Yes — with 20 years on Koh Tao, we can arrange diving, snorkelling, paddleboarding, restaurant bookings for special occasions, scooter hire delivered to your villa, and ferry or bus tickets. Just tell us what you'd like.</p></details>
+      <details><summary>Will I see any wildlife?</summary><p>You may spot small geckos and lizards around the villa — they're completely harmless, shy, and a lovely part of the island's scenery (they also help keep the insects away).</p></details>
+      <details><summary>Is LUM good for solo travellers?</summary><p>Absolutely. Many guests come on their own for some me-time — the privacy, the pool, and the sunset make it an easy place to slow down and switch off.</p></details>
+    </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-cols">
+
+      <div class="foot-col">
+        <img loading="lazy" decoding="async" src="Pics/logo.jpg" class="foot-logo" alt="LUM — Tropical Sunset Villas" />
+        <p class="foot-intro">Private hillside pool villas, facing the sunset over Koh&nbsp;Tao.</p>
+        <div class="foot-social">
+          <a href="https://www.instagram.com/live.lum" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@live.lum" aria-label="TikTok" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.2 3c.3 2 1.7 3.5 3.8 3.8v2.8c-1.4 0-2.7-.4-3.8-1.1v5.9c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6c.34 0 .67.03 1 .08v3.02c-.32-.1-.65-.15-1-.15-1.7 0-3.1 1.4-3.1 3.05s1.4 3.05 3.1 3.05 3.1-1.36 3.1-3.05V3h2.9z"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8c0-.9.25-1.5 1.55-1.5H17V3.9c-.3-.04-1.3-.13-2.45-.13-2.42 0-4.05 1.48-4.05 4.2V10H8v3h2.5v8h3z"/></svg>
+          </a>
+          <a href="#" aria-label="Google Maps" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s7-6.4 7-12A7 7 0 0 0 5 10c0 5.6 7 12 7 12z"/><circle cx="12" cy="10" r="2.4"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.93-.27-.1-.46-.15-.65.15-.2.3-.75.93-.92 1.12-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4s1.03 2.78 1.17 2.97c.15.2 2.03 3.1 4.92 4.35.69.3 1.22.48 1.64.61.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.26A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.96-.4-4.24-1.16l-.3-.18-2.85.75.76-2.78-.2-.31A8.2 8.2 0 1 1 12 20.2z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="#villas">Villas</a>
+        <a href="#experience">Experience</a>
+        <a href="#activities">Activities</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#location">Location</a>
+        <a href="#faq">FAQ</a>
+      </div>
+
+      <div class="foot-col">
+        <h4>Visit</h4>
+        <span>Sai Nuan, Koh&nbsp;Tao</span>
+        <span>Surat Thani, Thailand</span>
+        <a href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:hello@livelum.com">hello@livelum.com</a>
+        <a href="#" class="foot-spotify" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.6 14.4a.62.62 0 0 1-.86.21c-2.35-1.44-5.3-1.76-8.79-.96a.62.62 0 1 1-.28-1.21c3.82-.87 7.1-.5 9.72 1.1.3.18.39.57.21.86zm1.23-2.74a.78.78 0 0 1-1.07.26c-2.69-1.65-6.79-2.13-9.97-1.17a.78.78 0 1 1-.45-1.49c3.63-1.1 8.15-.56 11.23 1.33.37.22.49.7.26 1.07zm.11-2.85C14.84 8.93 9.4 8.74 6.3 9.68a.93.93 0 1 1-.54-1.78c3.56-1.08 9.56-.87 13.34 1.38a.93.93 0 1 1-.95 1.6z"/></svg>LUM Music on Spotify</a>
+      </div>
+
+      <div class="foot-col">
+        <h4>Stay</h4>
+        <p style="max-width:30ch;">Booked directly with us — message us for dates and anything you'd like arranged.</p>
+        <a href="#book" class="foot-book">Book your stay</a>
+      </div>
+
+    </div>
+    <div class="foot-bar">
+      <span>© 2026 LUM — Sunset Villas</span>
+      <span><a href="https://livelum.com">livelum.com</a> · <a href="terms.html">Terms &amp; Privacy</a></span>
+    </div>
+  </footer>
+
+  <!-- STICKY BOTTOM BAR (phones) -->
+  <div class="bottombar" id="bottombar">
+    <a href="#book" class="bb-primary">Book now</a>
+    <a href="#" class="bb-wa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.93-.27-.1-.46-.15-.65.15-.2.3-.75.93-.92 1.12-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4s1.03 2.78 1.17 2.97c.15.2 2.03 3.1 4.92 4.35.69.3 1.22.48 1.64.61.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.26A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.96-.4-4.24-1.16l-.3-.18-2.85.75.76-2.78-.2-.31A8.2 8.2 0 1 1 12 20.2z"/></svg>WhatsApp</a>
+  </div>
+
+  <script>
+    function openMenu()  { document.getElementById('overlay').classList.add('open'); }
+    function closeMenu() { document.getElementById('overlay').classList.remove('open'); }
+    function rvScroll(dir) {
+      var t = document.getElementById('rvTrack'); if (!t) return;
+      var c = t.querySelector('.rv'); var step = c ? c.getBoundingClientRect().width + 28 : 320;
+      var half = t.scrollWidth / 2;
+      var x = t.scrollLeft + dir * step;
+      if (x < 0) x += half; if (x >= half) x -= half;
+      t.scrollLeft = x;
+    }
+    window.addEventListener('scroll', function () {
+      var past = window.scrollY > window.innerHeight - 80;
+      document.getElementById('topbar').classList.toggle('solid', past);
+      document.getElementById('bottombar').classList.toggle('show', past);
+    });
+
+    // Video only on larger screens (mobile stays light & fast with a still image)
+    (function () {
+      if (!window.matchMedia('(min-width: 820px)').matches) return;
+      var art = document.getElementById('heroArt');
+      if (art) {
+        var v = document.createElement('video');
+        v.className = 'hero-video'; v.muted = true; v.loop = true; v.autoplay = true;
+        v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('autoplay', '');
+        v.poster = 'Pics/hero-poster.jpg';
+        var s = document.createElement('source'); s.src = 'Pics/hero.mp4'; s.type = 'video/mp4';
+        v.appendChild(s); art.insertBefore(v, art.firstChild);
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
+      }
+      var gv = document.querySelector('.gal-video');
+      if (gv) { gv.setAttribute('autoplay', ''); gv.autoplay = true; var p2 = gv.play(); if (p2 && p2.catch) p2.catch(function () {}); }
+    })();
+
+    // Fade-in on scroll
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('in'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold: 0.15 });
+      els.forEach(function (e) { io.observe(e); });
+    })();
+
+    // Reviews — continuous slow glide (pauses on hover, seamless loop)
+    (function () {
+      var t = document.getElementById('rvTrack');
+      if (!t) return;
+      t.innerHTML += t.innerHTML; // duplicate cards for a seamless loop
+      var paused = false;
+      ['mouseenter','touchstart'].forEach(function(ev){ t.addEventListener(ev, function(){ paused = true; }, {passive:true}); });
+      ['mouseleave','touchend'].forEach(function(ev){ t.addEventListener(ev, function(){ paused = false; }, {passive:true}); });
+      var speed = 0.7; // px per frame — gentle, readable glide
+      function tick() {
+        if (!paused) {
+          t.scrollLeft += speed;
+          var half = t.scrollWidth / 2;
+          if (t.scrollLeft >= half) t.scrollLeft -= half;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+  </script>
+
+  <!-- SEO: structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Resort",
+    "name": "LUM — Sunset Villas",
+    "description": "Private-pool villas set into a hillside above Sai Nuan, Koh Tao, facing the sunset over the sea.",
+    "url": "https://livelum.com",
+    "email": "hello@livelum.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Sai Nuan, Koh Tao", "addressRegion": "Surat Thani", "addressCountry": "TH" },
+    "geo": { "@type": "GeoCoordinates", "latitude": 10.0956, "longitude": 99.8237 },
+    "amenityFeature": [
+      { "@type": "LocationFeatureSpecification", "name": "Private pool", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Sunset-facing terrace", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Air conditioning", "value": true }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Where is LUM?", "acceptedAnswer": { "@type": "Answer", "text": "LUM is on the Sai Nuan hillside on the west coast of Koh Tao, Thailand — about three minutes from the nearest beach and around ten minutes from the main pier, facing the sunset over the sea." } },
+      { "@type": "Question", "name": "How do I get there?", "acceptedAnswer": { "@type": "Answer", "text": "We arrange pick-up and drop-off at the pier, so transfers are taken care of. Just send us your ferry details when you book." } },
+      { "@type": "Question", "name": "What's in each villa?", "acceptedAnswer": { "@type": "Answer", "text": "Each villa has a private pool, an open terrace facing the sunset, and a calm air-conditioned bedroom with warm natural materials. They all share the same layout and the same uninterrupted view." } },
+      { "@type": "Question", "name": "Is LUM good for couples?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — LUM is designed for privacy. The villas are set into the hillside and spaced apart, which makes it well suited to couples, honeymoons, and anniversaries." } },
+      { "@type": "Question", "name": "Is there food at the villas?", "acceptedAnswer": { "@type": "Answer", "text": "The villas don't have a kitchen, but we can arrange a breakfast basket to your villa, a sunset drinks set-up, and recommendations for the best places to eat nearby." } },
+      { "@type": "Question", "name": "How do I book?", "acceptedAnswer": { "@type": "Answer", "text": "LUM is booked directly with us. Message us on WhatsApp or email hello@livelum.com with your dates and we'll take care of the rest." } }
+    ]
+  }
+  </script>
+
+</body>
+</html>
