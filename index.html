@@ -14,9 +14,13 @@
   <meta property="og:image" content="Pics/hero-poster.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- Preload the hero (LCP) image so it paints fast -->
+  <link rel="preload" as="image" href="Pics/hero-poster.webp" fetchpriority="high" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200;0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@300;400;500&family=Pinyon+Script&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@300;400;500&family=Pinyon+Script&display=swap" /></noscript>
 
   <style>
     :root {
@@ -99,7 +103,7 @@
 
     /* hero */
     .hero { min-height: 100svh; display: grid; grid-template-rows: 1fr auto; }
-    .hero-art { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; padding: 80px 22px; background: linear-gradient(180deg, rgba(40,35,25,.18), rgba(40,35,25,.5)), url('Pics/hero-poster.jpg'), linear-gradient(150deg,#e4854a,#b65a44 45%,#5d4a3a); background-size: cover; background-position: center; }
+    .hero-art { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; padding: 80px 22px; background: linear-gradient(180deg, rgba(40,35,25,.18), rgba(40,35,25,.5)), url('Pics/hero-poster.webp'), linear-gradient(150deg,#e4854a,#b65a44 45%,#5d4a3a); background-size: cover; background-position: center; }
     .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 74% center; z-index: 0; }
     .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(40,35,25,.22), rgba(40,35,25,.5)); }
     .hero-copy { position: relative; z-index: 2; color: var(--cream); width: 100%; display: flex; flex-direction: column; align-items: center; }
@@ -317,7 +321,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-art" id="heroArt">
-      <video class="hero-video" autoplay muted loop playsinline poster="Pics/hero-poster.jpg">
+      <video class="hero-video" autoplay muted loop playsinline poster="Pics/hero-poster.webp">
         <source src="Pics/hero.mp4" type="video/mp4" />
       </video>
       <div class="hero-overlay"></div>
@@ -354,7 +358,7 @@
 
   <!-- VILLAS -->
   <section class="block" id="villas">
-    <div class="block-media reveal"><img loading="lazy" decoding="async" src="Pics/villa.jpg" alt="A couple in a private pool at LUM, Koh Tao" /><span class="block-cap">Private pool &amp; terrace</span></div>
+    <div class="block-media reveal"><img loading="lazy" decoding="async" src="Pics/villa.webp" alt="A couple in a private pool at LUM, Koh Tao" /><span class="block-cap">Private pool &amp; terrace</span></div>
     <div class="block-text">
       <div class="sec-head"><span class="sec-num">01</span><span class="sec-kicker">The Villas</span></div>
       <h2>Every villa, one uninterrupted view</h2>
@@ -372,7 +376,7 @@
 
   <!-- EXPERIENCE -->
   <section class="block block--rev" id="experience">
-    <div class="block-media reveal"><img loading="lazy" decoding="async" src="Pics/experience.jpg" alt="Hammocks at sunset on Koh Tao" /><span class="block-cap">Slow days on Koh Tao</span></div>
+    <div class="block-media reveal"><img loading="lazy" decoding="async" src="Pics/experience.webp" alt="Hammocks at sunset on Koh Tao" /><span class="block-cap">Slow days on Koh Tao</span></div>
     <div class="block-text">
       <div class="sec-head"><span class="sec-num">02</span><span class="sec-kicker">The Experience</span></div>
       <h2>Calm, private, and curated</h2>
@@ -390,7 +394,7 @@
 
   <!-- ACTIVITIES -->
   <section class="block" id="activities">
-    <div class="block-media reveal"><img loading="lazy" decoding="async" src="Pics/activities.jpg" alt="Snorkelling in clear water off Koh Tao" /><span class="block-cap">Dive · snorkel · explore</span></div>
+    <div class="block-media reveal"><img loading="lazy" decoding="async" src="Pics/activities.webp" alt="Snorkelling in clear water off Koh Tao" /><span class="block-cap">Dive · snorkel · explore</span></div>
     <div class="block-text">
       <div class="sec-head"><span class="sec-num">03</span><span class="sec-kicker">Activities</span></div>
       <h2>Things to do on Koh Tao</h2>
@@ -416,14 +420,14 @@
     <p class="body" style="margin-top:14px;">Open views over the water, with shifting light and colour every evening — the reason the whole place is pointed this way.</p>
     <p class="sunset-note">The sun sets here between about 6:15 and 6:55, depending on the season. We'll have the drinks ready.</p>
     <div class="sunset-grid">
-      <div class="reveal"><img loading="lazy" decoding="async" src="Pics/sunset-a.jpg" alt="Sunset over the sea, Koh Tao" /></div>
-      <div class="reveal"><img loading="lazy" decoding="async" src="Pics/sunset-drone.jpg" alt="Golden sunset over the water, Koh Tao" /></div>
+      <div class="reveal"><img loading="lazy" decoding="async" src="Pics/sunset-a.webp" alt="Sunset over the sea, Koh Tao" /></div>
+      <div class="reveal"><img loading="lazy" decoding="async" src="Pics/sunset-drone.webp" alt="Golden sunset over the water, Koh Tao" /></div>
     </div>
   </section>
 
   <!-- LOCATION -->
   <section class="block" id="location">
-    <div class="block-media reveal"><img loading="lazy" decoding="async" src="Pics/location.jpg" alt="Beach and turquoise water on Koh Tao near LUM" /><span class="block-cap">Sai Nuan · Koh Tao</span></div>
+    <div class="block-media reveal"><img loading="lazy" decoding="async" src="Pics/location.webp" alt="Beach and turquoise water on Koh Tao near LUM" /><span class="block-cap">Sai Nuan · Koh Tao</span></div>
     <div class="block-text">
       <div class="sec-head"><span class="sec-num">05</span><span class="sec-kicker">The Location</span></div>
       <h2>Koh Tao — Sai Nuan</h2>
@@ -443,14 +447,14 @@
     <div class="sec-head"><span class="sec-num">06</span><span class="sec-kicker">Gallery</span></div>
     <h2>Photo &amp; film</h2>
     <div class="gal-grid">
-      <div class="cell wide"><video class="gal-video" muted loop playsinline preload="none" poster="Pics/hero-poster.jpg"><source src="Pics/hero.mp4" type="video/mp4" /></video></div>
-      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/sunset-a.jpg" alt="Sunset over the sea, Koh Tao" /></div>
-      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/villa.jpg" alt="Private pool at LUM" /></div>
-      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/activities.jpg" alt="Snorkelling off Koh Tao" /></div>
-      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/experience.jpg" alt="Sunset hammocks on Koh Tao" /></div>
-      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/location.jpg" alt="Beach on Koh Tao" /></div>
-      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/sunset-b.jpg" alt="Longtail boats at sunset, Koh Tao" /></div>
-      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/gallery-nang.jpg" alt="Koh Nang Yuan, Koh Tao" /></div>
+      <div class="cell wide"><video class="gal-video" muted loop playsinline preload="none" poster="Pics/hero-poster.webp"><source src="Pics/hero.mp4" type="video/mp4" /></video></div>
+      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/sunset-a.webp" alt="Sunset over the sea, Koh Tao" /></div>
+      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/villa.webp" alt="Private pool at LUM" /></div>
+      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/activities.webp" alt="Snorkelling off Koh Tao" /></div>
+      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/experience.webp" alt="Sunset hammocks on Koh Tao" /></div>
+      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/location.webp" alt="Beach on Koh Tao" /></div>
+      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/sunset-b.webp" alt="Longtail boats at sunset, Koh Tao" /></div>
+      <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/gallery-nang.webp" alt="Koh Nang Yuan, Koh Tao" /></div>
     </div>
   </section>
 
@@ -494,7 +498,7 @@
   <!-- FAQ -->
   <section class="faq" id="faq">
     <div class="faq-inner">
-      <div class="faq-media reveal"><img loading="lazy" decoding="async" src="Pics/faq.jpg" alt="Palms on the hillside at LUM, Koh Tao" /></div>
+      <div class="faq-media reveal"><img loading="lazy" decoding="async" src="Pics/faq.webp" alt="Palms on the hillside at LUM, Koh Tao" /></div>
       <div class="faq-body">
     <div class="sec-head"><span class="sec-num">08</span><span class="sec-kicker">FAQ</span></div>
     <h2>Good to know</h2>
@@ -619,11 +623,14 @@
       var paused = false;
       ['mouseenter','touchstart'].forEach(function(ev){ t.addEventListener(ev, function(){ paused = true; }, {passive:true}); });
       ['mouseleave','touchend'].forEach(function(ev){ t.addEventListener(ev, function(){ paused = false; }, {passive:true}); });
-      var speed = 0.7; // px per frame — gentle, readable glide
+      var speed = 0.7, half = 0; // px per frame — gentle, readable glide
+      function measure() { half = t.scrollWidth / 2; }
+      measure();
+      window.addEventListener('resize', measure);
+      window.addEventListener('load', measure);
       function tick() {
-        if (!paused) {
+        if (!paused && half) {
           t.scrollLeft += speed;
-          var half = t.scrollWidth / 2;
           if (t.scrollLeft >= half) t.scrollLeft -= half;
         }
         requestAnimationFrame(tick);
