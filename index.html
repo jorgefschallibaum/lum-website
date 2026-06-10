@@ -103,8 +103,10 @@
 
     /* hero */
     .hero { min-height: 100svh; display: grid; grid-template-rows: 1fr auto; }
-    .hero-art { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; padding: 80px 22px; background-color: #2b2824; background-image: linear-gradient(180deg, rgba(40,35,25,.18), rgba(40,35,25,.5)), url('Pics/hero-poster.webp'); background-size: cover; background-position: center; }
-    .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 74% center; z-index: 0; }
+    .hero-art { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; padding: 80px 22px; background-color: #2b2824; }
+    .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 74% center; z-index: 0; }
+    .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 74% center; z-index: 0; opacity: 0; transition: opacity .8s ease; }
+    .hero-video.ready { opacity: 1; }
     .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(40,35,25,.22), rgba(40,35,25,.5)); }
     .hero-copy { position: relative; z-index: 2; color: var(--cream); width: 100%; display: flex; flex-direction: column; align-items: center; }
     .hero-lockup { display: inline-flex; flex-direction: column; align-items: stretch; }
@@ -252,7 +254,7 @@
       .ov-inner { grid-template-columns: 1.5fr 1fr; gap: 64px; align-items: center; }
       .book-btn { display: inline-block; }
       footer { padding-bottom: 36px; }
-      .hero-video { object-position: center; }
+      .hero-img, .hero-video { object-position: center; }
       header { padding: 20px 56px; }
       .hero-art { padding: 100px 56px; }
       .block-text { padding-top: 62px; padding-bottom: 66px; }
@@ -320,7 +322,8 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-art" id="heroArt">
-      <video class="hero-video" muted loop playsinline preload="none" poster="Pics/hero-poster.webp">
+      <img class="hero-img" src="Pics/hero-poster.webp" alt="" fetchpriority="high" decoding="async" />
+      <video class="hero-video" muted loop playsinline preload="none">
         <source src="Pics/hero.mp4" type="video/mp4" />
       </video>
       <div class="hero-overlay"></div>
@@ -521,7 +524,7 @@
     <div class="foot-cols">
 
       <div class="foot-col">
-        <img loading="lazy" decoding="async" src="Pics/logo.jpg" class="foot-logo" alt="LUM — Tropical Sunset Villas" />
+        <img loading="lazy" decoding="async" src="Pics/logo.jpg" width="1536" height="1024" class="foot-logo" alt="LUM — Tropical Sunset Villas" />
         <p class="foot-intro">Private hillside pool villas, facing the sunset over Koh&nbsp;Tao.</p>
         <div class="foot-social">
           <a href="https://www.instagram.com/live.lum" aria-label="Instagram" target="_blank" rel="noopener">
@@ -604,10 +607,11 @@
       if (gv) { gv.setAttribute('autoplay', ''); gv.autoplay = true; var p2 = gv.play(); if (p2 && p2.catch) p2.catch(function () {}); }
     })();
 
-    // Start the hero video AFTER first paint so its bytes don't delay FCP/LCP on slow connections
+    // Start the hero video AFTER first paint; it fades in over the poster <img> (the LCP) once ready
     window.addEventListener('load', function () {
       var hv = document.querySelector('.hero-video');
       if (!hv) return;
+      hv.addEventListener('playing', function () { hv.classList.add('ready'); });
       setTimeout(function () { try { hv.preload = 'auto'; var p = hv.play(); if (p && p.catch) p.catch(function(){}); } catch (e) {} }, 200);
     });
 
