@@ -114,7 +114,9 @@
     .hero-slogan { display: flex; align-items: center; gap: 14px; width: 100%; margin-top: .18em; }
     .hero-slogan span:first-child { font-family: var(--sans); font-weight: 500; font-size: clamp(7px,2.4vw,13px); letter-spacing: .18em; text-transform: uppercase; white-space: nowrap; color: var(--cream); }
     .hero-slogan .hline { flex: 1 1 auto; height: 2px; background: rgba(244,242,237,.8); }
-    .hero-foot-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; padding: 16px 22px 18px; }
+    .hero-foot-row { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; padding: 18px 22px 24px; }
+    .hero-foot-row .cta-row { justify-content: center; width: 100%; }
+    .hero-foot-row .btn { flex: 1 1 0; max-width: 220px; justify-content: center; text-align: center; }
 
     /* section frame */
     .sec-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 18px; }
@@ -247,6 +249,9 @@
 
     @media (min-width: 820px) {
       .intro,.why,.story,.book,.faq,.reviews,footer,.block-text,.hero-foot-row,.sunset-sec { padding-left: 56px; padding-right: 56px; }
+      .hero-foot-row { flex-direction: row; justify-content: space-between; text-align: left; }
+      .hero-foot-row .cta-row { width: auto; }
+      .hero-foot-row .btn { flex: 0 0 auto; max-width: none; }
       .rv { flex-basis: calc((100% - 56px) / 3); }
       .gal-grid { grid-template-columns: repeat(3,1fr); }
       .gal-grid .cell.wide { grid-column: span 1; }
