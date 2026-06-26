@@ -17,8 +17,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- Load fonts at low priority (media=print swap) so the high-priority hero image wins bandwidth and paints first (LCP) -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@300;400;500&family=Sacramento&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@300;400;500&family=Sacramento&display=swap" /></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@300;400;500&family=Allura&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@300;400;500&family=Allura&display=swap" /></noscript>
 
   <style>
     :root {
@@ -38,7 +38,7 @@
       --linec:   rgba(244,242,237,0.26);
       --display: 'Newsreader', Georgia, serif;
       --sans:    'Hanken Grotesk', -apple-system, Helvetica, Arial, sans-serif;
-      --script:  'Sacramento', cursive;
+      --script:  'Allura', cursive;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -54,15 +54,15 @@
     .reveal.in { opacity: 1; transform: none; }
 
     /* header */
-    header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; color: #fff; transition: background .3s ease, color .3s ease; }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; min-height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 14px 22px; color: #fff; transition: background .3s ease, color .3s ease; }
     header.solid { background: rgba(251,250,246,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); color: var(--text); }
     .hamb { background: none; border: 0; cursor: pointer; width: 26px; height: 16px; position: relative; padding: 0; color: inherit; }
     .hamb span { position: absolute; left: 0; right: 0; height: 1.5px; background: currentColor; }
     .hamb span:nth-child(1){ top:0; } .hamb span:nth-child(2){ top:50%; transform:translateY(-50%);} .hamb span:nth-child(3){ bottom:0; }
-    .brand-center { position: absolute; left: 50%; transform: translateX(-50%); text-align: center; line-height: 1; opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+    .brand-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); text-align: center; line-height: 1; opacity: 0; pointer-events: none; transition: opacity .3s ease; }
     header.solid .brand-center { opacity: 1; pointer-events: auto; }
-    .brand-center .bc-name { font-family: var(--display); font-weight: 400; font-size: 24px; letter-spacing: 0.16em; display: block; }
-    .brand-center .bc-sub { font-family: var(--script); font-weight: 400; font-size: 25px; letter-spacing: 0.01em; line-height: 1; display: block; margin-top: 2px; opacity: .95; white-space: nowrap; }
+    .brand-center .bc-name { font-family: var(--display); font-weight: 400; font-size: 20px; line-height: 1; letter-spacing: 0.16em; display: block; }
+    .brand-center .bc-sub { font-family: var(--script); font-weight: 400; font-size: 24px; letter-spacing: 0.01em; line-height: 1; display: block; margin-top: 1px; opacity: .95; white-space: nowrap; }
     .book-btn { display: none; font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; background: #fbfaf6; color: #26261c; border: 0; border-radius: 40px; padding: 11px 22px; white-space: nowrap; transition: background .25s ease, color .25s ease; }
     .book-btn:hover { background: #fff; }
     header.solid .book-btn { background: var(--grey); color: #fff; }
@@ -112,7 +112,7 @@
     .hero-lockup { display: inline-flex; flex-direction: column; align-items: stretch; }
     .hero-brand { font-family: var(--display); font-weight: 300; font-size: clamp(72px,25vw,220px); line-height: .74; letter-spacing: .03em; }
     .hero-slogan { display: flex; align-items: center; gap: 14px; width: 100%; margin-top: .18em; }
-    .hero-slogan span:first-child { font-family: var(--sans); font-weight: 500; font-size: clamp(9px,2vw,13px); letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; color: var(--cream); }
+    .hero-slogan span:first-child { font-family: var(--sans); font-weight: 500; font-size: clamp(7px,2.4vw,13px); letter-spacing: .18em; text-transform: uppercase; white-space: nowrap; color: var(--cream); }
     .hero-slogan .hline { flex: 1 1 auto; height: 2px; background: rgba(244,242,237,.8); }
     .hero-foot-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; padding: 16px 22px 18px; }
 
@@ -134,9 +134,10 @@
     .rows { display: grid; grid-template-columns: 1fr; border-top: 1px solid rgba(49,49,29,0.22); border-bottom: 1px solid rgba(49,49,29,0.22); margin-top: 8px; }
     .row { padding: 26px 0; border-bottom: 1px solid rgba(49,49,29,0.22); transition: background .35s ease; }
     .row:last-child { border-bottom: none; }
-    .row:hover { background: rgba(207,113,60,0.06); }
+    @media (hover: hover) { .row:hover { background: rgba(207,113,60,0.06); } }
     .row .rn { display: block; font-family: var(--display); font-style: italic; font-size: 22px; color: var(--accent-ink); line-height: 1; margin-bottom: 16px; letter-spacing: 0.02em; }
-    .row h2 { font-size: clamp(25px,5.5vw,34px); line-height: 1.06; margin-bottom: 12px; letter-spacing: 0; }
+    .why-title { font-family: var(--display); font-weight: 300; font-size: clamp(32px,8vw,52px); line-height: 1.04; letter-spacing: -.01em; margin: 4px 0 10px; }
+    .row h3 { font-size: clamp(25px,5.5vw,34px); line-height: 1.06; margin-bottom: 12px; letter-spacing: 0; }
     .row p { font-family: var(--sans); font-weight: 300; font-size: 16px; color: var(--dim); max-width: 40ch; }
 
     /* image + text blocks */
@@ -350,11 +351,11 @@
 
   <!-- WHY -->
   <section class="why">
-    <div class="sec-head"><span class="sec-kicker">Why LUM</span></div>
+    <h2 class="why-title">Why LUM</h2>
     <div class="rows">
-      <div class="row"><span class="rn">I</span><h2>Hillside Setting</h2><p>Set into the hillside for more privacy and a more secluded stay.</p></div>
-      <div class="row"><span class="rn">II</span><h2>Sunset-Facing</h2><p>Every villa opens toward the sea and the last light of the day.</p></div>
-      <div class="row"><span class="rn">III</span><h2>Private Pool &amp; Terrace</h2><p>A private pool and open terrace, with wide views and a more premium feel.</p></div>
+      <div class="row"><span class="rn">I</span><h3>Hillside Setting</h3><p>Set into the hillside for more privacy and a more secluded stay.</p></div>
+      <div class="row"><span class="rn">II</span><h3>Sunset-Facing</h3><p>Every villa opens toward the sea and the last light of the day.</p></div>
+      <div class="row"><span class="rn">III</span><h3>Private Pool &amp; Terrace</h3><p>A private pool and open terrace, with wide views and a more premium feel.</p></div>
     </div>
   </section>
 
@@ -623,7 +624,7 @@
       if (!t) return;
       var oneWidth = t.scrollWidth; // measure the single set BEFORE duplicating (uses existing layout — no forced reflow)
       t.innerHTML += t.innerHTML; // duplicate cards for a seamless loop
-      var paused = false, speed = 0.7;
+      var paused = false, speed = 1.1;
       t._pos = 0; t._half = oneWidth;
       function measure() { t._half = t.scrollWidth / 2; }
       window.addEventListener('resize', measure);
