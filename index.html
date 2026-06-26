@@ -7,18 +7,29 @@
   <title>LUM — Sunset Villas | Koh Tao, Thailand</title>
   <meta name="description" content="LUM — private-pool villas set into a hillside above Sai Nuan, Koh Tao, facing the sunset over the sea. Booked directly." />
 
-  <!-- Social share preview (finalize image URL to absolute https://livelum.com/... when deployed) -->
+  <!-- Canonical + crawl directives (update to https://livelum.com/ when the custom domain is live) -->
+  <link rel="canonical" href="https://jorgefschallibaum.github.io/lum-website/" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="theme-color" content="#41505a" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2341505a'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='18' fill='%23f4f2ed' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E" />
+
+  <!-- Social share preview (update URLs to https://livelum.com/... when the custom domain is live) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="LUM — Sunset Villas | Koh Tao" />
   <meta property="og:description" content="Private-pool villas on a hillside above Sai Nuan, Koh Tao — facing the sunset over the sea." />
-  <meta property="og:image" content="Pics/hero-poster.jpg" />
+  <meta property="og:url" content="https://jorgefschallibaum.github.io/lum-website/" />
+  <meta property="og:image" content="https://jorgefschallibaum.github.io/lum-website/Pics/hero-poster.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  { "@context": "https://schema.org", "@type": "Organization", "name": "LUM — Tropical Sunset Villas", "url": "https://jorgefschallibaum.github.io/lum-website/", "logo": "https://jorgefschallibaum.github.io/lum-website/Pics/logo.jpg", "sameAs": ["https://www.instagram.com/live.lum", "https://www.tiktok.com/@live.lum"] }
+  </script>
 
+  <link rel="preload" as="image" href="Pics/hero-poster.webp" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- Load fonts at low priority (media=print swap) so the high-priority hero image wins bandwidth and paints first (LCP) -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@300;400;500&family=Allura&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@300;400;500&family=Allura&display=swap" /></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@300;400;500;700&family=Moon+Dance&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@300;400;500;700&family=Moon+Dance&display=swap" /></noscript>
 
   <style>
     :root {
@@ -38,7 +49,7 @@
       --linec:   rgba(244,242,237,0.26);
       --display: 'Newsreader', Georgia, serif;
       --sans:    'Hanken Grotesk', -apple-system, Helvetica, Arial, sans-serif;
-      --script:  'Allura', cursive;
+      --script:  'Moon Dance', cursive;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -235,14 +246,14 @@
     .foot-col a.foot-book { display: inline-block; width: auto; text-align: center; margin: 8px 0 0; font-weight: 500; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; line-height: 1; border: 1px solid rgba(244,242,237,.55); border-radius: 40px; padding: 12px 24px; color: var(--cream); }
     .foot-col a.foot-book:hover { background: rgba(244,242,237,.14); }
     .foot-spotify { margin-top: 14px !important; color: rgba(244,242,237,.9) !important; }
-    .foot-bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--linec); }
+    .foot-bar { display: flex; flex-wrap: wrap; justify-content: center; text-align: center; gap: 6px; margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--linec); }
     .foot-bar span, .foot-bar a { font-family: var(--sans); font-size: 12px; letter-spacing: 0.05em; color: rgba(244,242,237,.85); }
     .foot-bar a:hover { color: #fff; }
 
     /* sticky bottom bar (phones) */
     .bottombar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 55; display: flex; transform: translateY(110%); transition: transform .3s ease; }
     .bottombar.show { transform: translateY(0); }
-    .bottombar a { flex: 1; text-align: center; padding: 15px 8px; font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+    .bottombar a { flex: 1; text-align: center; padding: 15px 8px; font-family: var(--sans); font-weight: 700; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
     .bottombar .bb-primary { background: var(--grey-dp); color: var(--cream); }
     .bottombar .bb-wa { background: #4e7a5f; color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .bottombar .bb-wa svg { width: 15px; height: 15px; fill: currentColor; }
@@ -287,7 +298,7 @@
   <!-- HEADER -->
   <header id="topbar">
     <button class="hamb" onclick="openMenu()" aria-label="Open menu"><span></span><span></span></button>
-    <a href="#top" class="brand-center"><span class="bc-name">LUM</span><span class="bc-sub">Tropical Sunset Villas</span></a>
+    <a href="#top" class="brand-center"><span class="bc-name">LUM</span><span class="bc-sub">Tropical sunset villas</span></a>
     <a href="#book" class="book-btn">Book best price</a>
   </header>
 
@@ -358,9 +369,9 @@
   <section class="why">
     <h2 class="why-title">Why LUM</h2>
     <div class="rows">
-      <div class="row"><span class="rn">I</span><h3>Hillside Setting</h3><p>Set into the hillside for more privacy and a more secluded stay.</p></div>
-      <div class="row"><span class="rn">II</span><h3>Sunset-Facing</h3><p>Every villa opens toward the sea and the last light of the day.</p></div>
-      <div class="row"><span class="rn">III</span><h3>Private Pool &amp; Terrace</h3><p>A private pool and open terrace, with wide views and a more premium feel.</p></div>
+      <div class="row"><span class="rn">I</span><h3>Hillside Setting</h3><p>Set into the hillside, spaced apart for privacy.</p></div>
+      <div class="row"><span class="rn">II</span><h3>Sunset-Facing</h3><p>Every villa opens west toward the sea.</p></div>
+      <div class="row"><span class="rn">III</span><h3>Private Pool &amp; Terrace</h3><p>A private pool and open terrace, with wide views.</p></div>
     </div>
   </section>
 
@@ -373,10 +384,10 @@
       <p class="body">Each villa follows the same layout — a calm bedroom opening onto a <strong>private terrace and pool</strong>, with the sunset and water beyond. Warm materials, soft lighting, and an air-conditioned interior designed for comfort.</p>
       <ul class="feat">
         <li>Private pool</li>
-        <li>Terrace facing the sunset</li>
+        <li>Open terrace</li>
         <li>Air-conditioned interior</li>
         <li>In-villa minibar — fine wine, sparkling &amp; mixers</li>
-        <li>Built into the hillside, fully private</li>
+        <li>Spaced apart, fully private</li>
       </ul>
       <a href="#book" class="arrow">Explore the villas →</a>
     </div>
@@ -410,11 +421,11 @@
         <li>Diving</li>
         <li>Snorkelling</li>
         <li>Hiking</li>
-        <li>SUP / paddleboarding</li>
         <li>Football</li>
         <li>Padel</li>
         <li>Pétanque</li>
         <li>Parties &amp; events</li>
+        <li>SUP / paddleboarding</li>
       </ul>
       <a href="#book" class="arrow">Plan your days →</a>
     </div>
@@ -438,12 +449,11 @@
     <div class="block-text">
       <div class="sec-head"><span class="sec-num">05</span><span class="sec-kicker">The Location</span></div>
       <h2>Koh Tao — Sai Nuan</h2>
-      <p class="body">Three minutes from the beach, near some of Koh Tao's best places to eat, and around ten minutes from the pier. <strong>Away from the crowds</strong> — close to everything.</p>
+      <p class="body">Three minutes from the beach, around ten minutes from the pier. <strong>Away from the crowds</strong> — close to everything.</p>
       <ul class="feat">
         <li>3 minutes to the beach</li>
         <li>Near Koh Tao's best places to eat</li>
         <li>~10 minutes to the pier</li>
-        <li>Pick-up &amp; drop-off arranged</li>
       </ul>
       <a href="#book" class="arrow">Check availability →</a>
     </div>
@@ -454,7 +464,7 @@
     <div class="sec-head"><span class="sec-num">06</span><span class="sec-kicker">Gallery</span></div>
     <h2>Photo &amp; film</h2>
     <div class="gal-grid">
-      <div class="cell wide reveal"><img loading="lazy" decoding="async" src="Pics/sunset-drone.webp" alt="Golden sunset over the sea, Koh Tao" /></div>
+      <div class="cell wide reveal"><img loading="lazy" decoding="async" src="Pics/sunset-drone.webp" alt="Golden sunset over the sea, Koh Tao" style="object-position:center 30%" /></div>
       <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/villa.webp" alt="A private pool at LUM, Koh Tao" /></div>
       <div class="cell reveal"><img loading="lazy" decoding="async" src="Pics/gallery-nang.webp" alt="Koh Nang Yuan viewpoint, Koh Tao" /></div>
     </div>
@@ -490,7 +500,7 @@
     <div class="sec-head"><span class="sec-num">07</span><span class="sec-kicker">Reservations</span></div>
     <h2>Book your stay</h2>
     <p class="body">With more than 20 years on Koh&nbsp;Tao, we look after the whole journey — from the moment you land at Bangkok's Suvarnabhumi or Don&nbsp;Mueang, all the way to your villa. Flights, ferries, and transfers: handled.</p>
-    <p class="body">Tell us your dates and we'll arrange the rest — island hopping, private tours around the island, and anything you'd like ready when you walk in.</p>
+    <p class="body">Tell us your dates and we'll arrange the rest — island hopping, private tours, and anything you'd like ready when you walk in.</p>
   </section>
 
   <!-- FAQ -->
@@ -509,7 +519,7 @@
       <details><summary>How do I book a stay at LUM?</summary><p>LUM is booked directly with us. Message us on WhatsApp or email <a href="mailto:hello@livelum.com">hello@livelum.com</a> with your dates and we'll take care of the rest.</p></details>
       <details><summary>Can you arrange diving, activities, and dining?</summary><p>Yes — with 20 years on Koh Tao, we can arrange diving, snorkelling, paddleboarding, restaurant bookings for special occasions, scooter hire delivered to your villa, and ferry or bus tickets. Just tell us what you'd like.</p></details>
       <details><summary>Will I see any wildlife?</summary><p>You may spot small geckos and lizards around the villa — they're completely harmless, shy, and a lovely part of the island's scenery (they also help keep the insects away).</p></details>
-      <details><summary>Is LUM good for solo travellers?</summary><p>Absolutely. Many guests come on their own for some me-time — the privacy, the pool, and the sunset make it an easy place to slow down and switch off.</p></details>
+      <details><summary>Is LUM good for solo travellers?</summary><p>Absolutely. Many guests come on their own for some me-time — the privacy, the pool, and the sunset make it an easy place to switch off.</p></details>
     </div>
       </div>
     </div>
@@ -561,8 +571,7 @@
 
     </div>
     <div class="foot-bar">
-      <span>© 2026 LUM — Sunset Villas</span>
-      <span><a href="https://livelum.com">livelum.com</a> · <a href="terms.html">Terms &amp; Privacy</a></span>
+      <span>© 2026 LUM · <a href="https://livelum.com">livelum.com</a> · <a href="terms.html">Terms &amp; Privacy</a></span>
     </div>
   </footer>
 
@@ -659,7 +668,7 @@
       { "@type": "Question", "name": "How do I book a stay at LUM?", "acceptedAnswer": { "@type": "Answer", "text": "LUM is booked directly with us. Message us on WhatsApp or email hello@livelum.com with your dates and we'll take care of the rest." } },
       { "@type": "Question", "name": "Can you arrange diving, activities, and dining?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — with 20 years on Koh Tao, we can arrange diving, snorkelling, paddleboarding, restaurant bookings for special occasions, scooter hire delivered to your villa, and ferry or bus tickets. Just tell us what you'd like." } },
       { "@type": "Question", "name": "Will I see any wildlife at the villas?", "acceptedAnswer": { "@type": "Answer", "text": "You may spot small geckos and lizards around the villa — they're completely harmless, shy, and a lovely part of the island's scenery (they also help keep the insects away)." } },
-      { "@type": "Question", "name": "Is LUM good for solo travellers?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. Many guests come on their own for some me-time — the privacy, the pool, and the sunset make it an easy place to slow down and switch off." } }
+      { "@type": "Question", "name": "Is LUM good for solo travellers?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. Many guests come on their own for some me-time — the privacy, the pool, and the sunset make it an easy place to switch off." } }
     ]
   }
   </script>
