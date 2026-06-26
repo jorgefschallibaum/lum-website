@@ -220,7 +220,8 @@
 
     /* footer — LOGO blue-grey, columned */
     footer { padding: 60px 22px 96px; background: #41505a; color: var(--cream); }
-    .foot-cols { display: grid; grid-template-columns: 1fr; gap: 38px; }
+    .foot-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+    .foot-cols > .foot-col:first-child { grid-column: 1 / -1; }
     .foot-logo { display: inline-block; color: var(--cream); margin: -6px 0 16px; }
     .foot-logo .fl-name { font-family: var(--display); font-weight: 300; font-size: 46px; line-height: .9; letter-spacing: .05em; display: block; }
     .foot-logo .fl-sub { font-family: var(--sans); font-weight: 500; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; display: block; margin-top: 7px; color: rgba(244,242,237,.85); }
@@ -259,6 +260,7 @@
       .faq-inner { grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: stretch; }
       .faq-media img { height: 100%; min-height: 460px; }
       .foot-cols { grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; }
+      .foot-cols > .foot-col:first-child { grid-column: auto; }
       .ov-inner { grid-template-columns: 1.5fr 1fr; gap: 64px; align-items: center; }
       .book-btn { display: inline-block; }
       footer { padding-bottom: 36px; }
@@ -319,8 +321,7 @@
         <div class="ov-social">
           <a href="https://www.instagram.com/live.lum" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg></a>
           <a href="https://www.tiktok.com/@live.lum" aria-label="TikTok" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.2 3c.3 2 1.7 3.5 3.8 3.8v2.8c-1.4 0-2.7-.4-3.8-1.1v5.9c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6c.34 0 .67.03 1 .08v3.02c-.32-.1-.65-.15-1-.15-1.7 0-3.1 1.4-3.1 3.05s1.4 3.05 3.1 3.05 3.1-1.36 3.1-3.05V3h2.9z"/></svg></a>
-          <a href="#" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8c0-.9.25-1.5 1.55-1.5H17V3.9c-.3-.04-1.3-.13-2.45-.13-2.42 0-4.05 1.48-4.05 4.2V10H8v3h2.5v8h3z"/></svg></a>
-          <a href="#" aria-label="Google Maps" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s7-6.4 7-12A7 7 0 0 0 5 10c0 5.6 7 12 7 12z"/><circle cx="12" cy="10" r="2.4"/></svg></a>
+          <a href="#" aria-label="LINE" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.4c0 4-4 7.2-9 7.2-.86 0-1.7-.09-2.48-.26L4.5 20l1.06-3.08C4 15.56 3 13.58 3 11.4 3 7.4 7 4.2 12 4.2s9 3.2 9 7.2z"/></svg></a>
           <a href="#" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.93-.27-.1-.46-.15-.65.15-.2.3-.75.93-.92 1.12-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4s1.03 2.78 1.17 2.97c.15.2 2.03 3.1 4.92 4.35.69.3 1.22.48 1.64.61.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.26A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.96-.4-4.24-1.16l-.3-.18-2.85.75.76-2.78-.2-.31A8.2 8.2 0 1 1 12 20.2z"/></svg></a>
         </div>
       </div>
@@ -491,11 +492,6 @@
     <h2>Book your stay</h2>
     <p class="body">With more than 20 years on Koh&nbsp;Tao, we look after the whole journey — from the moment you land at Bangkok's Suvarnabhumi or Don&nbsp;Mueang, all the way to your villa. Flights, ferries, and transfers: handled.</p>
     <p class="body">Tell us your dates and we'll arrange the rest — island hopping, private tours around the island, and anything you'd like ready when you walk in.</p>
-    <div class="cta-row">
-      <a href="#" class="btn btn-wa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.93-.27-.1-.46-.15-.65.15-.2.3-.75.93-.92 1.12-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4s1.03 2.78 1.17 2.97c.15.2 2.03 3.1 4.92 4.35.69.3 1.22.48 1.64.61.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.26A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.96-.4-4.24-1.16l-.3-.18-2.85.75.76-2.78-.2-.31A8.2 8.2 0 1 1 12 20.2z"/></svg>Message us on WhatsApp</a>
-      <span class="cta-or">or</span>
-      <a href="mailto:hello@livelum.com" class="btn btn-line">Email us</a>
-    </div>
   </section>
 
   <!-- FAQ -->
@@ -506,13 +502,13 @@
     <div class="sec-head"><span class="sec-num">08</span><span class="sec-kicker">FAQ</span></div>
     <h2>Good to know</h2>
     <div class="faq-list">
-      <details><summary>Where is LUM?</summary><p>LUM is on the Sai Nuan hillside on the west coast of Koh Tao, Thailand — about three minutes from the nearest beach and around ten minutes from the main pier, facing the sunset over the sea.</p></details>
-      <details><summary>How do I get there?</summary><p>We arrange pick-up and drop-off at the pier, so transfers are taken care of. Just send us your ferry details when you book.</p></details>
+      <details><summary>Where is LUM on Koh Tao?</summary><p>LUM is on the Sai Nuan hillside on the secluded west coast of Koh Tao, Thailand — about three minutes from the nearest beach and around ten minutes from the main pier, facing the sunset over the sea.</p></details>
+      <details><summary>How do I get to LUM from the pier?</summary><p>We arrange pick-up and drop-off at the Koh Tao pier, so your transfers are taken care of. Just send us your ferry details when you book and we'll be there.</p></details>
       <details><summary>What's in each villa?</summary><p>Each villa has a private pool, an open terrace facing the sunset, and a calm air-conditioned bedroom with warm natural materials. They all share the same layout and the same view over the sea.</p></details>
       <details><summary>Is LUM good for couples?</summary><p>Yes — LUM is designed for privacy. The villas are set into the hillside and spaced apart, which makes it well suited to couples, honeymoons, and anniversaries.</p></details>
       <details><summary>Is there food and drink at the villas?</summary><p>Each villa has an in-villa minibar — fine wine, sparkling, refreshments and mixers. There's no kitchen, but we can arrange a breakfast basket to your villa, a sunset drinks set-up, and the best places to eat nearby.</p></details>
-      <details><summary>How do I book?</summary><p>LUM is booked directly with us. Message us on WhatsApp or email <a href="mailto:hello@livelum.com">hello@livelum.com</a> with your dates and we'll take care of the rest.</p></details>
-      <details><summary>Can you arrange activities and dining?</summary><p>Yes — with 20 years on Koh Tao, we can arrange diving, snorkelling, paddleboarding, restaurant bookings for special occasions, scooter hire delivered to your villa, and ferry or bus tickets. Just tell us what you'd like.</p></details>
+      <details><summary>How do I book a stay at LUM?</summary><p>LUM is booked directly with us. Message us on WhatsApp or email <a href="mailto:hello@livelum.com">hello@livelum.com</a> with your dates and we'll take care of the rest.</p></details>
+      <details><summary>Can you arrange diving, activities, and dining?</summary><p>Yes — with 20 years on Koh Tao, we can arrange diving, snorkelling, paddleboarding, restaurant bookings for special occasions, scooter hire delivered to your villa, and ferry or bus tickets. Just tell us what you'd like.</p></details>
       <details><summary>Will I see any wildlife?</summary><p>You may spot small geckos and lizards around the villa — they're completely harmless, shy, and a lovely part of the island's scenery (they also help keep the insects away).</p></details>
       <details><summary>Is LUM good for solo travellers?</summary><p>Absolutely. Many guests come on their own for some me-time — the privacy, the pool, and the sunset make it an easy place to slow down and switch off.</p></details>
     </div>
@@ -536,11 +532,8 @@
           <a href="https://www.tiktok.com/@live.lum" aria-label="TikTok" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.2 3c.3 2 1.7 3.5 3.8 3.8v2.8c-1.4 0-2.7-.4-3.8-1.1v5.9c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6c.34 0 .67.03 1 .08v3.02c-.32-.1-.65-.15-1-.15-1.7 0-3.1 1.4-3.1 3.05s1.4 3.05 3.1 3.05 3.1-1.36 3.1-3.05V3h2.9z"/></svg>
           </a>
-          <a href="#" aria-label="Facebook" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8c0-.9.25-1.5 1.55-1.5H17V3.9c-.3-.04-1.3-.13-2.45-.13-2.42 0-4.05 1.48-4.05 4.2V10H8v3h2.5v8h3z"/></svg>
-          </a>
-          <a href="#" aria-label="Google Maps" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s7-6.4 7-12A7 7 0 0 0 5 10c0 5.6 7 12 7 12z"/><circle cx="12" cy="10" r="2.4"/></svg>
+          <a href="#" aria-label="LINE" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.4c0 4-4 7.2-9 7.2-.86 0-1.7-.09-2.48-.26L4.5 20l1.06-3.08C4 15.56 3 13.58 3 11.4 3 7.4 7 4.2 12 4.2s9 3.2 9 7.2z"/></svg>
           </a>
           <a href="#" aria-label="WhatsApp" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.93-.27-.1-.46-.15-.65.15-.2.3-.75.93-.92 1.12-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4s1.03 2.78 1.17 2.97c.15.2 2.03 3.1 4.92 4.35.69.3 1.22.48 1.64.61.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.26A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.96-.4-4.24-1.16l-.3-.18-2.85.75.76-2.78-.2-.31A8.2 8.2 0 1 1 12 20.2z"/></svg>
@@ -578,7 +571,7 @@
   <!-- STICKY BOTTOM BAR (phones) -->
   <div class="bottombar" id="bottombar">
     <a href="#book" class="bb-primary">Book now</a>
-    <a href="#" class="bb-wa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.93-.27-.1-.46-.15-.65.15-.2.3-.75.93-.92 1.12-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4s1.03 2.78 1.17 2.97c.15.2 2.03 3.1 4.92 4.35.69.3 1.22.48 1.64.61.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.26A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.96-.4-4.24-1.16l-.3-.18-2.85.75.76-2.78-.2-.31A8.2 8.2 0 1 1 12 20.2z"/></svg>WhatsApp</a>
+    <a href="#" class="bb-wa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.93-.27-.1-.46-.15-.65.15-.2.3-.75.93-.92 1.12-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4s1.03 2.78 1.17 2.97c.15.2 2.03 3.1 4.92 4.35.69.3 1.22.48 1.64.61.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.26A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.96-.4-4.24-1.16l-.3-.18-2.85.75.76-2.78-.2-.31A8.2 8.2 0 1 1 12 20.2z"/></svg>WhatsApp message</a>
   </div>
 
   <script>
@@ -618,7 +611,7 @@
       if (!t) return;
       var oneWidth = t.scrollWidth; // measure the single set BEFORE duplicating (uses existing layout — no forced reflow)
       t.innerHTML += t.innerHTML; // duplicate cards for a seamless loop
-      var paused = false, speed = 1.1;
+      var paused = false, speed = 0.9;
       t._pos = 0; t._half = oneWidth;
       function measure() { t._half = t.scrollWidth / 2; }
       window.addEventListener('resize', measure);
@@ -660,12 +653,15 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "Where is LUM?", "acceptedAnswer": { "@type": "Answer", "text": "LUM is on the Sai Nuan hillside on the west coast of Koh Tao, Thailand — about three minutes from the nearest beach and around ten minutes from the main pier, facing the sunset over the sea." } },
-      { "@type": "Question", "name": "How do I get there?", "acceptedAnswer": { "@type": "Answer", "text": "We arrange pick-up and drop-off at the pier, so transfers are taken care of. Just send us your ferry details when you book." } },
+      { "@type": "Question", "name": "Where is LUM on Koh Tao?", "acceptedAnswer": { "@type": "Answer", "text": "LUM is on the Sai Nuan hillside on the secluded west coast of Koh Tao, Thailand — about three minutes from the nearest beach and around ten minutes from the main pier, facing the sunset over the sea." } },
+      { "@type": "Question", "name": "How do I get to LUM from the pier?", "acceptedAnswer": { "@type": "Answer", "text": "We arrange pick-up and drop-off at the Koh Tao pier, so your transfers are taken care of. Just send us your ferry details when you book and we'll be there." } },
       { "@type": "Question", "name": "What's in each villa?", "acceptedAnswer": { "@type": "Answer", "text": "Each villa has a private pool, an open terrace facing the sunset, and a calm air-conditioned bedroom with warm natural materials. They all share the same layout and the same view over the sea." } },
       { "@type": "Question", "name": "Is LUM good for couples?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — LUM is designed for privacy. The villas are set into the hillside and spaced apart, which makes it well suited to couples, honeymoons, and anniversaries." } },
-      { "@type": "Question", "name": "Is there food at the villas?", "acceptedAnswer": { "@type": "Answer", "text": "The villas don't have a kitchen, but we can arrange a breakfast basket to your villa, a sunset drinks set-up, and recommendations for the best places to eat nearby." } },
-      { "@type": "Question", "name": "How do I book?", "acceptedAnswer": { "@type": "Answer", "text": "LUM is booked directly with us. Message us on WhatsApp or email hello@livelum.com with your dates and we'll take care of the rest." } }
+      { "@type": "Question", "name": "Is there food and drink at the villas?", "acceptedAnswer": { "@type": "Answer", "text": "Each villa has an in-villa minibar — fine wine, sparkling, refreshments and mixers. There's no kitchen, but we can arrange a breakfast basket to your villa, a sunset drinks set-up, and the best places to eat nearby." } },
+      { "@type": "Question", "name": "How do I book a stay at LUM?", "acceptedAnswer": { "@type": "Answer", "text": "LUM is booked directly with us. Message us on WhatsApp or email hello@livelum.com with your dates and we'll take care of the rest." } },
+      { "@type": "Question", "name": "Can you arrange diving, activities, and dining?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — with 20 years on Koh Tao, we can arrange diving, snorkelling, paddleboarding, restaurant bookings for special occasions, scooter hire delivered to your villa, and ferry or bus tickets. Just tell us what you'd like." } },
+      { "@type": "Question", "name": "Will I see any wildlife at the villas?", "acceptedAnswer": { "@type": "Answer", "text": "You may spot small geckos and lizards around the villa — they're completely harmless, shy, and a lovely part of the island's scenery (they also help keep the insects away)." } },
+      { "@type": "Question", "name": "Is LUM good for solo travellers?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. Many guests come on their own for some me-time — the privacy, the pool, and the sunset make it an easy place to slow down and switch off." } }
     ]
   }
   </script>
